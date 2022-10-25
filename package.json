@@ -1,0 +1,56 @@
+{
+  "name": "ext-name",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ineshbose/ext-name"
+  },
+  "bugs": {
+    "url": "https://github.com/ineshbose/ext-name/issues"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/ineshbose"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/index.js",
+  "icon": "res/icon.png",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --external vscode",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "vscode:prepublish": "nr build",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.4",
+    "@types/vscode": "^1.69.0",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.21.0",
+    "esno": "^0.16.3",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.2.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4",
+    "vitest": "^0.21.0",
+    "vsce": "^2.10.0"
+  }
+}
