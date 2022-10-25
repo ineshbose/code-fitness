@@ -1,9 +1,8 @@
-import { window } from 'vscode'
+import { window } from 'vscode';
 
 export function activate() {
-  window.showInformationMessage('Hello')
+  window.showInformationMessage('Hello');
 }
 
-export function deactivate() {
-
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function deactivate() {}

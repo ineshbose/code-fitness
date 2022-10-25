@@ -17,9 +17,6 @@ jobs:
 
       - name: Set node
         uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: pnpm
 
       - name: Setup
         run: npm i -g @antfu/ni
@@ -37,9 +34,6 @@ jobs:
 
       - name: Set node
         uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: pnpm
 
       - name: Setup
         run: npm i -g @antfu/ni
@@ -64,9 +58,6 @@ jobs:
 
       - name: Set node version to ${{ matrix.node }}
         uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: pnpm
 
       - name: Setup
         run: npm i -g @antfu/ni
