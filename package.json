@@ -46,7 +46,7 @@
     "publish": "vsce publish --no-dependencies",
     "test": "vitest",
     "lint": "eslint .",
-    "typecheck": "concurrently \"tsc --noEmit\" \"svelte-check --tsconfig ./tsconfig.json\"",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json",
     "release": "bumpp && npm run publish"
   },
   "dependencies": {},
