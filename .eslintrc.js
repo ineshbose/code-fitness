@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import', 'prettier'],
   rules: {
+    'global-require': 'off',
     'prettier/prettier': 'error',
     'no-param-reassign': 'off',
     'import/no-unresolved': 'off',

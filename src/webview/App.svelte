@@ -1,16 +1,17 @@
 <script lang="ts">
-  import Counter from "~/components/Counter.svelte";
+  import './app.css';
+  import Counter from '~/components/Counter.svelte';
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> Vite </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer"> Svelte </a>
-    <a href="https://code.visualstudio.com/api" target="_blank" rel="noreferrer"> VSCode</a>
-  </div>
-  <h1>Vite + Svelte + VSCode</h1>
-
-  <div class="card">
-    <Counter />
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <figure><img src="https://picsum.photos/400/225" alt="" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">Code Fitness</h2>
+      <p>Trying to expose your development habits!</p>
+      <div class="card-actions justify-end">
+        <Counter />
+      </div>
+    </div>
   </div>
 </main>

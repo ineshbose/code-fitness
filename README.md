@@ -1,3 +1,3 @@
-# ext-name
+# code-fitness
 
 More information to follow.

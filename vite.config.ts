@@ -9,7 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, 'src/webview/main.ts'),
-      name: 'CustomEdit',
+      name: 'code-fitness',
       formats: ['umd'],
     },
     sourcemap: 'inline',

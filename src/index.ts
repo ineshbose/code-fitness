@@ -1,6 +1,9 @@
 import vscode from 'vscode';
 
-function getTemplate(ctx: vscode.ExtensionContext, webview: vscode.Webview) {
+function getWebviewContent(
+  context: vscode.ExtensionContext,
+  webview: vscode.Webview
+) {
   return `
 	<!DOCTYPE html>
 	<html lang="en">
@@ -14,48 +17,46 @@ function getTemplate(ctx: vscode.ExtensionContext, webview: vscode.Webview) {
   }; style-src ${webview.cspSource};"
 			/>
 			<script type="module" crossorigin src="${webview.asWebviewUri(
-        vscode.Uri.joinPath(ctx.extensionUri, 'dist', 'ext', 'ext-name.umd.js')
+        vscode.Uri.joinPath(
+          context.extensionUri,
+          'dist',
+          'ext',
+          'code-fitness.umd.js'
+        )
       )}"></script>
 			<link rel="stylesheet" href="${webview.asWebviewUri(
-        vscode.Uri.joinPath(ctx.extensionUri, 'dist', 'ext', 'style.css')
+        vscode.Uri.joinPath(context.extensionUri, 'dist', 'ext', 'style.css')
       )}">
-			<title>Edit Document</title>
 		</head>
-		<body>
-			<div id="app">
-			</div>
-		</body>
+		<body></body>
 	</html>
 	`;
 }
 
-class CustomEditorProvider implements vscode.CustomTextEditorProvider {
-  public static register(ctx: vscode.ExtensionContext) {
-    const provider = new CustomEditorProvider(ctx);
-    const providerRegistration = vscode.window.registerCustomEditorProvider(
-      CustomEditorProvider.viewType,
-      provider
-    );
-    return providerRegistration;
-  }
+export function activate(context: vscode.ExtensionContext) {
+  context.subscriptions.push(
+    vscode.commands.registerCommand('code-fitness.start', () => {
+      const panel = vscode.window.createWebviewPanel(
+        'code-fitness',
+        'Extension',
+        vscode.ViewColumn.One,
+        { enableScripts: true }
+      );
+      panel.webview.html = getWebviewContent(context, panel.webview);
+    })
+  );
 
-  public static readonly viewType = 'myExtension.customEdit';
-
-  // eslint-disable-next-line no-useless-constructor
-  constructor(private readonly ctx: vscode.ExtensionContext) {}
-
-  public async resolveCustomTextEditor(
-    _document: vscode.TextDocument,
-    webviewPanel: vscode.WebviewPanel
-    // token: vscode.CancellationToken
-  ) {
-    webviewPanel.webview.options = { enableScripts: true };
-    webviewPanel.webview.html = getTemplate(this.ctx, webviewPanel.webview);
-  }
-}
-
-export function activate(ctx: vscode.ExtensionContext) {
-  ctx.subscriptions.push(CustomEditorProvider.register(ctx));
+  context.subscriptions.push(
+    vscode.commands.registerCommand('code-fitness.reload', () => {
+      // panel.kill();
+      // panel.createOrShow(context.extensionUri);
+      // setTimeout(() => {
+      //   vscode.commands.executeCommand(
+      //     "workbench.action.webview.openDeveloperTools"
+      //   );
+      // }, 500);
+    })
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
