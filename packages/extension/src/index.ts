@@ -20,15 +20,15 @@ function getWebviewContent(
         vscode.Uri.joinPath(
           context.extensionUri,
           'dist',
-          'ext',
-          'code-fitness.umd.js'
+          'app',
+          'code-fitness-app.js'
         )
       )}"></script>
 			<link rel="stylesheet" href="${webview.asWebviewUri(
-        vscode.Uri.joinPath(context.extensionUri, 'dist', 'ext', 'style.css')
+        vscode.Uri.joinPath(context.extensionUri, 'dist', 'app', 'style.css')
       )}">
 		</head>
-		<body></body>
+		<body><div id="app"></div></body>
 	</html>
 	`;
 }
@@ -36,6 +36,7 @@ function getWebviewContent(
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('code-fitness.start', () => {
+      vscode.window.showInformationMessage('Hello');
       const panel = vscode.window.createWebviewPanel(
         'code-fitness',
         'Extension',

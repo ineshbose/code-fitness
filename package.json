@@ -4,82 +4,37 @@
   "description": "",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
+  "private": true,
+  "workspaces": ["packages/*"],
   "repository": {
     "type": "git",
     "url": "https://github.com/ineshbose/code-fitness"
   },
-  "main": "./dist/index.js",
-  "icon": "res/icon.png",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "vscode": "^1.69.0"
-  },
-  "activationEvents": [
-    "onCommand:code-fitness.start",
-    "onCommand:code-fitness.reload"
-  ],
-  "contributes": {
-    "commands": [
-      {
-        "command": "code-fitness.start",
-        "title": "Start new coding session"
-      },
-      {
-        "command": "code-fitness.reload",
-        "title": "Reload coding session"
-      }
-    ]
-  },
   "scripts": {
-    "vscode:prepublish": "npm run build",
     "build": "concurrently npm:build:*",
-    "build:ext": "tsup src/index.ts --external vscode",
-    "build:svelte": "vite build",
+    "build:ext": "cd packages/extension && npm run build",
+    "build:app": "cd packages/app && npm run build:webview",
     "dev": "concurrently npm:dev:*",
-    "dev:ext": "npm run build:ext -- --watch",
-    "dev:svelte": "npm run build:svelte -- --watch",
-    "pack": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies",
-    "test": "vitest",
-    "lint": "eslint .",
-    "typecheck": "svelte-check --tsconfig ./tsconfig.json",
-    "release": "bumpp && npm run publish"
+    "dev:ext": "cd packages/extension && npm run dev",
+    "dev:app": "cd packages/app && npm run dev:webview",
+    "lint": "eslint ."
   },
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@sveltejs/vite-plugin-svelte": "^1.2.0",
-    "@tsconfig/svelte": "^3.0.0",
     "@types/node": "^18.6.4",
-    "@types/vscode": "^1.69.0",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
-    "autoprefixer": "^10.4.13",
-    "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
-    "daisyui": "^2.42.1",
     "eslint": "^8.21.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "esno": "^0.16.3",
     "lint-staged": "^13.0.3",
-    "postcss": "^8.4.19",
     "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "svelte": "^3.53.1",
-    "svelte-check": "^2.9.2",
-    "svelte-preprocess": "^4.10.7",
-    "tailwindcss": "^3.2.4",
-    "tsup": "^6.2.1",
     "typescript": "^4.7.4",
-    "vite": "^3.0.4",
-    "vitest": "^0.21.0",
-    "vsce": "^2.10.0",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
