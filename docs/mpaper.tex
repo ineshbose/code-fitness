@@ -4,6 +4,8 @@
 
 \documentclass{mpaper}
 
+\addbibresource{references.bib}
+
 \begin{document}
 
 \title{An Example Paper for MSci Submission}
@@ -125,8 +127,11 @@ The standard Lorem Ipsum passage, used since the 1500s
 {\bf Acknowledgments.}
 This is optional; it is a location for you to thank people
 
-\bibliographystyle{abbrv}
-\bibliography{example}
+% bib needs to be polished, dblp
+
+\printbibliography[notkeyword=interim-report]
+% \bibliographystyle{abbrv}
+% \bibliography{example}
 
 
 \end{document}

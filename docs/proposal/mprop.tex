@@ -1,0 +1,150 @@
+\documentclass{mprop}
+\usepackage{graphicx}
+
+\addbibresource{../references.bib}
+
+% alternative font if you prefer
+%\usepackage{times}
+
+% for alternative page numbering use the following package
+% and see documentation for commands
+%\usepackage{fancyheadings}
+
+
+% other potentially useful packages
+%\uspackage{amssymb,amsmath}
+%\usepackage{url}
+%\usepackage{fancyvrb}
+%\usepackage[final]{pdfpages}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Holistic Dashboard of Software Development Work-Time \& Practices}
+\author{Inesh Bose}
+\date{16 December 2022}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+% Bob martin book - code complete, humans are important part (chap 1)
+
+% convince it is important context - what is it, and why is important, why do i care
+
+% each paragraph goes into context - aim to do this
+
+This section aims to introduce the reader with the concepts of software development that are used throughout the project as a motivation, the fields of Software Engineering and Human Computer Interaction - how they are related, and the background of the project.
+
+\subsection{Software Engineering}
+
+Developing software involves many steps such as planning, designing, programming, testing and documenting. Applying a systematic, disciplined and quantifiable engineering approach to this process is called Software Engineering [citation]; it ensures that the delivered products are reliable, efficient and of high-quality [citation - Sommerville].
+
+This approach can further be classified into tasks (design, implementation, maintenance), disciplines (quality assurance, project management), practices (BDD, TDD, Stand-up), and methodology frameworks (Agile, Incremental, Waterfall). More importantly, the people involved (called software engineers or software developers), are a critical aspect of software engineering \cite{martinAgileSoftwareDevelopment2003}, and they can be from different backgrounds in different circumstances.
+
+\subsection{Human-Computer Interaction}
+
+The field that researches on usage of computer technology using interfaces between people and computers is called Human-Computer Interaction (HCI) \footnote{May also be referred under the umbrella term "Interactive Systems" (IS)}. Often, development of any software involves evaluation of the product from end-user point of view. However, while the end-users of a product are seen as the essential, 'human' part of a system, the developers are as-important humans creating the product.
+
+\subsection{Bridging SE and HCI}
+
+Using developers as the subject of study (i.e. the 'human' in the Human-Computer Interaction), we understand that their interface of interacting with computers is using various tools. Most notably, the main tool can (unarguably) be a form of Integrated Development Environment (IDE) with the main element being the Text Editor. The purpose of this interaction is to provide a low level form of instructions to the computer, using software development, to allow end-users to interact with their tools using high-level instructions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statement of Problem}
+
+% clearly state the problem to be addressed in your forthcoming project. Explain why it would be worthwhile to solve this problem.
+
+% provide resources, examples, how an organisation budgets in DX, Android Studio analytic report
+
+% debate the challenge you are going to answer in this paper
+
+This section presents and states the issues that the project aims to solve.
+
+More importance is given to User Experience (UX) which can lead to lack of realisation for Developer Experience (DX\footnote{Also abbreviated as DE\textsuperscript{X}}). If the developers of a system have positive experiences working on it, then productivity will be directly proportional. Usage of best practices, automation, issue tracking, robust tools that integrate into a bug-free, strong-foundation system.
+
+\subsection{Development}
+
+In teams, there are several factors that affect each member coming from different backgrounds:
+
+\begin{itemize}
+    \item \textbf{Experience:}
+    \item \textbf{Passion:}
+    \item \textbf{Beliefs:}
+\end{itemize}
+
+\subsection{Awareness}%Visualisation
+
+\subsection{Tools}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background Survey}
+
+% present an overview of relevant previous work including articles, books, and existing software products. Critically evaluate the strengths and weaknesses of the previous work.
+
+This section reveals and discusses the literature review, of the established, related works, conducted by categorising search into areas relevant to developers.
+
+\subsection{Productivity}
+
+% this could be first
+% learning can say "a big part of productivity is knowing how to use tools"
+
+All papers in [learning] have established that if they learn and know the tools, productivity increases [cite?].
+
+\subsection{Learning}
+
+There are numerous APIs \& packages available for a project, especially with the drive in the open-source community. PyPI has around 420K projects with more than 4M releases and npm.js has more than 1M projects; these are package registries for Python and Node.js (JavaScript) respectively. [GitHub Octoverse Report?]. (Evidently,) there are lot of APIs one can learn and still not be an expert in everything. There are different systems, requirements and languages one would need to work with and there are many tools available (there would likely be documentation for an established package, communities such as Stack Overflow or GitHub Discussions, search engines like Google to index everything on the internet related to the package). So it is common for a developer to make a search as the first step [paper]. Learning experience is also important, and some methods may not be as welcoming to learners since they come from different backgrounds. Documentation may be too technical and assumes prior knowledge, or Stack Overflow may be gate-kept [cite] (but there are reasons to instead push developers to research more instead of directly consulting help).
+
+\subsection{Experience}% can this be independent?
+
+(not skill-experience)
+
+If there would be no blockers on productivity, humans feel good when productive [cite]. A lot of papers in the previous sections have also considered learning experience, along with frustration of using tools if there is no knowledge of it.
+
+\subsection{Structure (Individual \& Teams)}
+
+Development is also influenced by the structure of the process - it can involve working individually or in a team. Learning can take place in a team (pair programming), or using tutorials individually, along with productivity being perceived differently in teams (tasks depending on others' availability).
+
+\subsection{Practices}%??? Perhaps Tools?
+
+Experienced developers are aware of many tools, but they can still discover new ones. There are tools available to measure productivity, code health, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proposed Approach}
+
+% state how you propose to solve the software development problem. Show that your proposed approach is feasible, but identify any risks.
+
+% how we are going to aiming to achieve, solve the problem in context
+
+This project plans to make developers aware of their strategy and practices in order to understand areas of improvement and aim for better experience in teams. Under the supervision of Dr. Tim Storer [citation with profile] at the University of Glasgow, we are aiming to develop a Visual Studio Code extension that would be evaluated with Level 2 students at the University [of Glasgow] studying the "Web Application Development 2" course as they are in the early stages, but are assumed to have known the prior knowledge.
+
+\subsection{Implementation}
+
+\subsection{Evaluation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Work Plan}
+
+% show how you plan to organize your work, identifying intermediate deliverables and dates.
+
+The project needs to be finished \& submitted by 14 April 2023 16:35PM (BST).
+
+\subsection{Current Progress}
+
+\subsection{Next Steps}
+
+\subsection{Target \& Requirements}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% it is fine to change the bibliography style if you want
+
+\printbibliography%[keyword=interim-report]
+
+\end{document}
