@@ -1,5 +1,5 @@
 % =============================================================================
-% mproj.cls
+% mprop.cls
 %
 % Template for masters year projects in the School of Computing Science at the
 % University of Glasgow. Adapted from the level 3 project template originally
@@ -7,7 +7,7 @@
 %
 % =============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mproj}[%
+\ProvidesClass{mprop}[%
 2009/01/09 Colin Perkins <csp@dcs.gla.ac.uk>.%
 2009/09/16 Modified by Tim Storer <tws@dcs.gla.ac.uk> to support non pdf modes.%
 2011/02/15 Modified by Gregg Hamilton <hamiltgr@dcs.gla.ac.uk> for use in final year projects.%
@@ -16,6 +16,9 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 \LoadClass[12pt,a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{tocloft}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{11pt plus 2pt}
@@ -65,6 +68,22 @@
 \global\let\and\relax
 }
 
+% \def\currentcontentsnumber{0}
+% \renewcommand{\cftsecfillnum}[1]{\expandafter\ifx\currentcontentsnumber#1
+%   \hfill\nobreak\else
+%   {\cftsecleader}\nobreak
+%   \makebox[\@pnumwidth][\cftpnumalign]{%
+%   {\cftsecpagefont #1}}\fi
+%   \cftsecafterpnum\par
+%   \gdef\currentcontentsnumber{#1}}
+% \renewcommand{\cftsubsecfillnum}[1]{\expandafter\ifx\currentcontentsnumber#1
+%   \hfill\nobreak\else
+%   {\cftsubsecleader}\nobreak
+%   \makebox[\@pnumwidth][\cftpnumalign]{%
+%   {\cftsubsecpagefont #1}}\fi
+%   \cftsubsecafterpnum\par
+%   \gdef\currentcontentsnumber{#1}}
+
 \newcommand{\educationalconsent}{
 \newpage
 \section*{Education Use Consent}
@@ -82,3 +101,5 @@ Name: & \rule{4.0cm}{0.5mm} & Signature: & \rule{4.5cm}{0.5mm} \\
       &                     &            &                     \\
 \end{tabular}
 }
+
+\usepackage[defernumbers=true]{biblatex}
