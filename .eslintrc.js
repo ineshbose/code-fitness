@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'plugin:prettier/recommended',
+    'plugin:svelte/recommended',
   ],
   ignorePatterns: ['dist'],
   parser: '@typescript-eslint/parser',
@@ -16,6 +17,15 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'import', 'prettier'],
+  overrides: [
+    {
+      files: ['*.svelte'],
+      parser: 'svelte-eslint-parser',
+      parserOptions: {
+        parser: { ts: '@typescript-eslint/parser' },
+      },
+    },
+  ],
   rules: {
     'global-require': 'off',
     'prettier/prettier': 'error',

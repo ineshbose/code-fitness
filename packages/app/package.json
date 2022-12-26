@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:webview": "npm run build:webview -- --watch",
     "build": "vite build",
-    "build:webview": "vite build --config ./webview-vite.config.ts",
+    "build:webview": "vite build --mode webview",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.1.0",
     "@tsconfig/svelte": "^3.0.0",
+    "@types/vscode-webview": "^1.57.0",
     "svelte": "^3.52.0",
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",

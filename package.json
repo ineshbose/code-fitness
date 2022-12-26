@@ -1,11 +1,13 @@
 {
   "name": "code-fitness",
   "version": "0.0.0",
-  "description": "",
+  "description": "Fitness application for Software Projects",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ineshbose/code-fitness"
@@ -32,8 +34,10 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-svelte": "^2.14.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.9.0",
     "typescript": "^4.7.4",
     "yorkie": "^2.0.0"
   },
@@ -42,8 +46,8 @@
     "commit-msg": "npx commitlint -e"
   },
   "lint-staged": {
-    "**/*.{js,ts}": [
-      "eslint --fix"
+    "**/*.{js,ts,svelte}": [
+      "eslint"
     ]
   },
   "commitlint": {

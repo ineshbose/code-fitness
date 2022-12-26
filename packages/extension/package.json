@@ -4,12 +4,7 @@
   "description": "",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ineshbose/code-fitness"
-  },
   "main": "./dist/index.js",
-  "icon": "res/icon.png",
   "files": [
     "dist"
   ],

@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
+  import {
+    provideVSCodeDesignSystem,
+    vsCodeButton,
+  } from '@vscode/webview-ui-toolkit';
 
-	provideVSCodeDesignSystem().register(vsCodeButton());
+  provideVSCodeDesignSystem().register(vsCodeButton());
 
-  let count: number = 0
+  let count = 0;
   const increment = () => {
-    count += 1
-  }
+    count += 1;
+  };
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
