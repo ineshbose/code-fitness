@@ -1,0 +1,14 @@
+{
+  "name": "code-fitness-core",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
+  "license": "UNLICENSED",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "consola": "^2.15.3",
+    "cosmiconfig": "^8.0.0",
+    "tsup": "^6.5.0"
+  }
+}
