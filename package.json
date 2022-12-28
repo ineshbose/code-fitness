@@ -1,43 +1,35 @@
 {
   "name": "code-fitness",
-  "version": "0.0.0",
   "description": "Fitness application for Software Projects",
-  "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
-  "license": "UNLICENSED",
+  "repository": "https://github.com/ineshbose/code-fitness.git",
   "private": true,
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/shared/*",
+    "packages/plugins/*"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ineshbose/code-fitness"
-  },
   "scripts": {
-    "build": "concurrently npm:build:*",
-    "build:ext": "cd packages/extension && npm run build",
-    "build:app": "cd packages/app && npm run build:webview",
-    "dev": "concurrently npm:dev:*",
-    "dev:ext": "cd packages/extension && npm run dev",
-    "dev:app": "cd packages/app && npm run dev:webview",
-    "lint": "eslint ."
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "eslint .",
+    "test": "turbo run test"
   },
   "dependencies": {},
   "devDependencies": {
+    "@code-fitness/eslint-config": "*",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@types/node": "^18.6.4",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
-    "concurrently": "^7.5.0",
     "eslint": "^8.21.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-svelte": "^2.14.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.9.0",
+    "rimraf": "^3.0.2",
+    "turbo": "^1.6.3",
     "typescript": "^4.7.4",
     "yorkie": "^2.0.0"
   },

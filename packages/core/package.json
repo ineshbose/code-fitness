@@ -1,14 +1,23 @@
 {
-  "name": "code-fitness-core",
+  "name": "core",
   "version": "0.0.0",
   "description": "",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
-  "scripts": {},
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build -- --watch",
+    "clean": "rimraf .turbo node_modules dist"
+  },
   "dependencies": {},
   "devDependencies": {
     "consola": "^2.15.3",
     "cosmiconfig": "^8.0.0",
-    "tsup": "^6.5.0"
+    "tsconfig": "*"
   }
 }

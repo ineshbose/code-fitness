@@ -1,0 +1,26 @@
+{
+  "name": "@code-fitness/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-svelte": "^2.14.1"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.4.10",
+    "tsconfig": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
