@@ -1,10 +1,14 @@
+import { readFileSync } from 'fs';
+import { compile as compileHtml, SafeString } from 'handlebars';
 import vscode from 'vscode';
 
 function getWebviewContent(
   context: vscode.ExtensionContext,
   webview: vscode.Webview
 ) {
-  return `
+  // eslint-disable-next-line no-constant-condition
+  return false
+    ? `
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -14,8 +18,7 @@ function getWebviewContent(
 				http-equiv="Content-Security-Policy"
 				content="${[
           "default-src 'none'",
-          `img-src ${webview.cspSource}`,
-          'https:',
+          `img-src ${webview.cspSource} https:`,
           `script-src ${webview.cspSource}`,
           `style-src ${webview.cspSource}`,
         ].join(';')};"
@@ -30,7 +33,20 @@ function getWebviewContent(
 		</head>
 		<body><div id="app"></div></body>
 	</html>
-	`;
+	`
+    : compileHtml(
+        // this isn't gonna work
+        readFileSync(
+          vscode.Uri.joinPath(
+            context.extensionUri, // resolve('app'),
+            'dist/app/index.html' // , 'build/index.html'
+          ).fsPath,
+          { encoding: 'utf-8' }
+        )
+      )({
+        cspSource: new SafeString(webview.cspSource),
+        extensionUri: context.extensionUri,
+      });
 }
 
 export function activate(context: vscode.ExtensionContext) {

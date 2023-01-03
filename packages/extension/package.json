@@ -32,15 +32,20 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "clean": "rimraf .turbo node_modules dist",
-    "build": "vite build",
+    "build": "tsup src/index.ts --external vscode",
     "dev": "npm run build -- --watch",
     "pack": "vsce package --no-dependencies",
     "publish": "vsce publish --no-dependencies",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "app": "*",
+    "demo": "*"
+  },
   "devDependencies": {
     "@types/vscode": "^1.69.0",
-    "@vscode/vsce": "^2.15.0"
+    "@vscode/vsce": "^2.15.0",
+    "handlebars": "^4.7.7",
+    "tsup": "^6.5.0"
   }
 }

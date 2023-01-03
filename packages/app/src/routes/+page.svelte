@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import {
     provideVSCodeDesignSystem,
     vsCodeButton,
@@ -12,7 +12,6 @@
   };
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<vscode-button on:click={increment}>
+<vscode-button on:click={increment} on:keydown={increment}>
   count is {count}
 </vscode-button>

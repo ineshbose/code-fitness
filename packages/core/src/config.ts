@@ -7,7 +7,7 @@ type Config = {
   plugins?: string[];
 };
 
-export const loadConfig = (configFilePath: string) => {
+export const loadConfig = (configFilePath?: string) => {
   const explorer = cosmiconfigSync('codeFitness');
   const result = configFilePath
     ? explorer.load(configFilePath)

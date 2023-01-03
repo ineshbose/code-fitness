@@ -2,6 +2,7 @@
   "name": "core",
   "version": "0.0.0",
   "description": "",
+  "private": true,
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
   "source": "./src/index.ts",
@@ -9,12 +10,17 @@
   "files": [
     "dist/**"
   ],
+  "bin": {
+    "code-fitness": "./dist/cli.js"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "npm run build -- --watch",
     "clean": "rimraf .turbo node_modules dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mri": "^1.2.0"
+  },
   "devDependencies": {
     "consola": "^2.15.3",
     "cosmiconfig": "^8.0.0",

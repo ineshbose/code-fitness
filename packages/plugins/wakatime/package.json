@@ -1,4 +1,27 @@
 {
   "name": "wakatime-plugin",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
+  "license": "UNLICENSED",
+  "source": "./index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build -- --watch",
+    "clean": "rimraf .turbo node_modules dist"
+  },
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "ofetch": "^1.0.0",
+    "ufo": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/btoa": "^1.2.3",
+    "octokit": "^2.0.10"
+  }
 }
