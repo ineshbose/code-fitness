@@ -6,6 +6,7 @@ import preprocess from 'svelte-preprocess';
  * for more information about preprocessors
  *
  * @type {import('@sveltejs/kit').Config} */
+
 export default {
   preprocess: preprocess(),
   kit: {
@@ -14,19 +15,16 @@ export default {
     // eslint-disable-next-line no-constant-condition
     ...(true || process.argv.includes('webview')
       ? {
-          csp: {
-            directives: {
-              'default-src': ['none'],
-              'img-src': ['{{cspSource}} https:'],
-              'script-src': ['{{cspSource}}'],
-              'style-src': ['{{cspSource}}'],
-            },
-          },
-          embedded: true,
+          // csp: {
+          //   directives: {
+          //     'default-src': ['none'],
+          //     'img-src': ['{{cspSource}} https:'],
+          //     'script-src': ['{{cspSource}}'],
+          //     'style-src': ['{{cspSource}}'],
+          //   },
+          // },
+          // embedded: true,
         }
       : {}),
-    // paths: {
-    //   base: '{{baseURL}}',
-    // },
   },
 };

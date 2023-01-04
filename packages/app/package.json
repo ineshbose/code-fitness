@@ -1,13 +1,31 @@
 {
   "name": "app",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
+  "license": "UNLICENSED",
   "private": true,
+  "sideEffects": false,
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "npm run build:app && npx jiti build.ts",
+    "build:app": "vite build",
     "preview": "vite preview",
-    "clean": "rimraf .turbo node_modules .svelte-kit build",
+    "clean": "rimraf .turbo node_modules .svelte-kit build dist",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
@@ -17,6 +35,7 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0",
     "@sveltejs/kit": "^1.0.0",
+    "cheerio": "^1.0.0-rc.12",
     "svelte": "^3.53.1",
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
@@ -24,5 +43,9 @@
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
     "vite-plugin-html-template": "^1.1.5"
+  },
+  "build": {
+    "clean": false,
+    "externals": ["vscode"]
   }
 }

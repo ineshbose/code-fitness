@@ -7,6 +7,7 @@ import {
   Uri,
   ViewColumn,
 } from 'vscode';
+import { webview as appWebview } from 'app';
 
 export default class MainPanel {
   // eslint-disable-next-line no-use-before-define
@@ -57,18 +58,7 @@ export default class MainPanel {
 
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    return /* html */ `
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        </head>
-        <body>
-          Hello world!
-        </body>
-      </html>
-    `;
+    return appWebview(webview, extensionUri);
   }
 
   private _setWebviewMessageListener(webview: Webview) {

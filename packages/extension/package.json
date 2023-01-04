@@ -43,14 +43,19 @@
   "devDependencies": {
     "@types/vscode": "^1.69.0",
     "@vscode/vsce": "^2.15.0",
-    "handlebars": "^4.7.7",
     "tsup": "^6.5.0"
   },
   "build": {
-    "externals": ["vscode"]
+    "externals": [
+      "vscode"
+    ]
   },
   "tsup": {
-    "entry": ["src/index.ts"],
-    "external": ["vscode"]
+    "entry": [
+      "src/index.ts"
+    ],
+    "external": [
+      "vscode"
+    ]
   }
 }
