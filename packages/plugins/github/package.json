@@ -2,20 +2,32 @@
   "name": "github-plugin",
   "version": "0.0.0",
   "description": "",
-  "private": true,
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
-  "source": "./index.ts",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "npm run build -- --watch",
+    "build": "unbuild",
+    "dev": "vitest dev",
+    "lint": "eslint .",
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
     "octokit": "^2.0.10"
-  }
+  },
+  "devDependencies": {}
 }

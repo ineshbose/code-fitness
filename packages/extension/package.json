@@ -5,10 +5,8 @@
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
   "license": "UNLICENSED",
   "main": "./dist/index.js",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "engines": {
     "vscode": "^1.69.0"
@@ -32,7 +30,7 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "clean": "rimraf .turbo node_modules dist",
-    "build": "tsup src/index.ts --external vscode",
+    "build": "tsup",
     "dev": "npm run build -- --watch",
     "pack": "vsce package --no-dependencies",
     "publish": "vsce publish --no-dependencies",
@@ -47,5 +45,12 @@
     "@vscode/vsce": "^2.15.0",
     "handlebars": "^4.7.7",
     "tsup": "^6.5.0"
+  },
+  "build": {
+    "externals": ["vscode"]
+  },
+  "tsup": {
+    "entry": ["src/index.ts"],
+    "external": ["vscode"]
   }
 }

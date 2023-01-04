@@ -14,7 +14,7 @@
     "clean": "turbo run clean",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "dev:ext": "npm run dev --workspace=extension",
-    "lint": "eslint .",
+    "lint": "turbo run lint && eslint .",
     "test": "turbo run test"
   },
   "dependencies": {},
@@ -25,6 +25,7 @@
     "@types/node": "^18.6.4",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "@vitest/coverage-c8": "^0.26.3",
     "eslint": "^8.21.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
@@ -32,6 +33,8 @@
     "rimraf": "^3.0.2",
     "turbo": "^1.6.3",
     "typescript": "^4.7.4",
+    "unbuild": "^1.0.2",
+    "vitest": "^0.26.3",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {

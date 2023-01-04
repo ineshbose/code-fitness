@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx nitropack dev",
+    "build": "npx nitropack build",
+    "lint": "eslint .",
+    "start": "node .output/server/index.mjs",
+    "clean": "rimraf .turbo .nitro .output node_modules"
+  },
+  "dependencies": {
+    "nitropack": "latest"
+  }
+}
