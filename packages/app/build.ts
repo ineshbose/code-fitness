@@ -16,7 +16,7 @@ consola.info('Generating webview template..');
 const contents = [
   genImport('vscode', ['Uri']),
   genTypeImport('vscode', ['Webview']),
-  'export default (webview: Webview, extensionUri: Uri) => {',
+  'export default (webview: Webview, extensionUri: Uri, outDir = "") => {',
 ];
 const replaceMap = {};
 const dir = dirname(fileURLToPath(import.meta.url));
@@ -38,7 +38,7 @@ page('[href],[src]').each((_, el) => {
   replaceMap[link] = `\${${varName}}`;
 
   contents.push(
-    `const ${varName} = webview.asWebviewUri(Uri.joinPath(extensionUri, "${link
+    `const ${varName} = webview.asWebviewUri(Uri.joinPath(extensionUri, outDir, "${link
       .replace(/^(\/)/, '')
       // .split('/')
       .replace(/\//g, '", "')}"))`
@@ -46,12 +46,16 @@ page('[href],[src]').each((_, el) => {
 });
 
 page('meta[http-equiv="content-security-policy"]').remove();
-page('head').append(
-  `<meta http-equiv="content-security-policy" content="default-src 'none'; img-src \${webview.cspSource} https:; script-src \${webview.cspSource}; style-src \${webview.cspSource}">`
-);
+// page('head').append(
+//   `<meta http-equiv="content-security-policy" content="default-src 'none'; img-src \${webview.cspSource} https:; script-src \${webview.cspSource}; style-src \${webview.cspSource}">`
+// );
 
 const template = page
   .html()
+  .replace(
+    'paths: {"base":"","assets":""},',
+    `paths: {"base":"\${webview.asWebviewUri(Uri.joinPath(extensionUri, outDir))}","assets":""},`
+  )
   .replace(new RegExp(Object.keys(replaceMap).join('|'), 'g'), (match) => {
     return replaceMap[match];
   });

@@ -7,6 +7,9 @@ import {
   Uri,
   ViewColumn,
 } from 'vscode';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { webview as appWebview } from 'app';
 
 export default class MainPanel {
@@ -16,6 +19,8 @@ export default class MainPanel {
   private readonly _panel: WebviewPanel;
 
   private _disposables: Disposable[] = [];
+
+  private _nonce!: string;
 
   private constructor(panel: WebviewPanel, extensionUri: Uri) {
     this._panel = panel;
@@ -27,6 +32,20 @@ export default class MainPanel {
     );
 
     this._setWebviewMessageListener(this._panel.webview);
+    this._generateNonce();
+  }
+
+  private _generateNonce() {
+    let text = '';
+    const possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < 32; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    this._nonce = text;
   }
 
   public static render(extensionUri: Uri) {
@@ -35,7 +54,7 @@ export default class MainPanel {
     } else {
       const panel = window.createWebviewPanel(
         'showMain',
-        'Hello World',
+        'Code Fitness',
         ViewColumn.One,
         { enableScripts: true }
       );
@@ -56,9 +75,12 @@ export default class MainPanel {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
-    return appWebview(webview, extensionUri);
+    const content = appWebview(webview, extensionUri, 'dist')
+      .replace('<body ', '<body data-token="" ')
+      .replaceAll('<script ', `<script nonce="${this._nonce}" `);
+
+    return content;
   }
 
   private _setWebviewMessageListener(webview: Webview) {

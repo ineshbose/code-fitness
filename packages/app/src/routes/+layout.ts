@@ -1,2 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
-export const ssr = false;
+export const ssr = true;
+export const prerender = true;
+export const trailingSlash = 'ignore';

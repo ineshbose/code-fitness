@@ -1,10 +1,13 @@
 <script>
-  import {
-    provideVSCodeDesignSystem,
-    vsCodeButton,
-  } from '@vscode/webview-ui-toolkit';
+  import { onMount } from 'svelte';
 
-  provideVSCodeDesignSystem().register(vsCodeButton());
+  onMount(async () => {
+    const { provideVSCodeDesignSystem, vsCodeButton } = await import(
+      '@vscode/webview-ui-toolkit'
+    ).then((m) => m.default || m);
+
+    provideVSCodeDesignSystem().register(vsCodeButton());
+  });
 
   let count = 0;
   const increment = () => {
