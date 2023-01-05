@@ -17,6 +17,7 @@ export = <Linter.Config>{
     '.turbo',
     'dist',
     'node_modules',
+    '*rc.js',
     ...(<string[]>svelte.ignorePatterns || []),
   ],
   parser: '@typescript-eslint/parser',

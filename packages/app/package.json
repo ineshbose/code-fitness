@@ -30,7 +30,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.2.0"
+    "@vscode/webview-ui-toolkit": "^1.2.0",
+    "chart.js": "^4.1.2"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0",
@@ -46,7 +47,11 @@
   },
   "build": {
     "clean": false,
-    "externals": ["vscode"],
-    "outDir": ["./dist/app"]
+    "externals": [
+      "vscode"
+    ],
+    "outDir": [
+      "./dist/app"
+    ]
   }
 }
