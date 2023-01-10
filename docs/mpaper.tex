@@ -1,8 +1,6 @@
-%% example.tex
-%% Jeremy Singer
-%% 16 Oct 12
-
 \documentclass{mpaper}
+
+\addbibresource{references/primary.bib}
 
 \begin{document}
 
@@ -125,8 +123,11 @@ The standard Lorem Ipsum passage, used since the 1500s
 {\bf Acknowledgments.}
 This is optional; it is a location for you to thank people
 
-\bibliographystyle{abbrv}
-\bibliography{example}
+% bib needs to be polished, dblp
+
+\printbibliography%[notkeyword=interim-report]
+% \bibliographystyle{abbrv}
+% \bibliography{example}
 
 
 \end{document}

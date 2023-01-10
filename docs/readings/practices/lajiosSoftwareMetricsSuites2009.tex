@@ -1,0 +1,17 @@
+\section{Software metrics suites for project landscapes}
+
+\subsection{Abstract}
+
+Many software metrics have been proposed over the past decades. Selecting a small custom suite of metrics is desirable for quality assessment and defect prediction in industrial practice since developers cannot easily cope with dozens of metrics. In large software architectures, structurally similar projects are subject to similar defect conditions and can be analyzed by the same metrics suite. A large Java application developed at Continentale Insurance contains structurally similar subprojects for different insurance branches (health, life, accident, car, property). These branches are integrated in the IT-architecture in a technically uniform way. We investigated which subsets of metrics are predictive but uncorrelated with each other and compared the results for structurally similar projects.
+
+\subsection{What were they trying to do}
+
+Determine inidividual metric suites that fit projects and do not coorelate too highly with each other for quality assessment and defect prediction
+
+\subsection{What did they do}
+
+Using machine learning (Weka environment), they applied Correlation-based Feature Selection (CFS) to find subset of metrics for five independent subprojects with strong structural similarities.
+
+\subsection{What did they learn}
+
+Mostly found LoC and WMCMcCabe common and no CK metrics.

@@ -7,6 +7,7 @@
 
 
 % packages to use
+\usepackage[defernumbers=true]{biblatex}
 \usepackage{array} % Drop-in replacement for 'tabular' environment, with more options
 \usepackage{color}
 \usepackage{graphicx}
@@ -15,6 +16,8 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{multirow}
+\usepackage{subcaption}
 \usepackage{listings} % Environment for code listings
 \usepackage[a4paper]{geometry}
 \usepackage[breaklinks,colorlinks,citecolor=black,urlcolor=black,linkcolor=black,pdfpagelabels=false,pdfusetitle]{hyperref}
@@ -27,6 +30,9 @@ basicstyle=\ttfamily \footnotesize,
 backgroundcolor=\color{lightgray},
 breaklines=true,
 }
+
+%% @jsinger
+\makeatletter
 
 %%% The main features of this style are:
 %%%
@@ -41,7 +47,7 @@ breaklines=true,
 
 \typeout{Glasgow MSci document class. Jeremy Singer, 16 October 2012}
 \typeout{Based in part upon ACM sig_alternate class}
-\typeout{****** Bugs/comments/suggestions/technicalities to Jeremy Singer -- jeremy.singer@glasgow.ac.uk ******}
+\typeout{****** Bugs/comments/suggestions/technicalities to Jeremy Singer -- jeremy.singer at glasgow.ac.uk ******}
 \oddsidemargin 4.5pc
 \evensidemargin 4.5pc
 \advance\oddsidemargin by -1in  % Correct for LaTeX gratuitousness
@@ -81,7 +87,7 @@ breaklines=true,
                         % footnote =3D height of normal \footnotesize strut,
                         % so no extra space between footnotes.
 
-\skip\footins 8.1pt plus 4pt minus 2pt  % Space between last line of text and
+\skip\footins 5.6pt plus 4pt minus 2pt  % Space between last line of text and
                                         % top of first footnote.
 \floatsep 11pt plus 2pt minus 2pt       % Space between adjacent floats moved
                                         % to top or bottom of text page.
@@ -158,7 +164,7 @@ breaklines=true,
 \itemsep \parsep}}
 
 \def\footnotesize{\@setsize\footnotesize{9pt}\ixpt\@ixpt
-\abovedisplayskip 6.4pt plus 2pt minus 4pt%
+\abovedisplayskip 2pt plus 2pt minus 4pt%
 \belowdisplayskip \abovedisplayskip
 \abovedisplayshortskip \z@ plus 1pt%
 \belowdisplayshortskip 2.7pt plus 1pt minus 2pt
@@ -239,7 +245,7 @@ breaklines=true,
 
 \def\@listI{\leftmargin\leftmargini \parsep 3.6pt plus 2pt minus 1pt%
 \topsep 7.2pt plus 2pt minus 4pt%
-\itemsep 3.6pt plus 2pt minus 1pt}
+\itemsep 3.6pt plus 4pt minus 4pt}
 
 \let\@listi\@listI
 \@listi
@@ -836,16 +842,17 @@ breaklines=true,
         {4\p@}{\normalsize\@ucheadtrue}%
 }
 \def\section{%
-    \@startsection{section}{1}{\z@}{-10\p@ \@plus -4\p@ \@minus -2\p@}% GM
+    \@startsection{section}{1}{\z@}{10\p@ \@plus 4\p@ \@minus 2\p@}% GM
     {4\p@}{\baselineskip 14pt\secfnt\@ucheadtrue}%
 }
 
+
 \def\subsection{%
-    \@startsection{subsection}{2}{\z@}{-8\p@ \@plus -2\p@ \@minus -\p@}
+    \@startsection{subsection}{2}{\z@}{8\p@ \@plus -2\p@ \@minus -\p@}
     {4\p@}{\secfnt}%
 }
 \def\subsubsection{%
-    \@startsection{subsubsection}{3}{\z@}{-8\p@ \@plus -2\p@ \@minus -\p@}%
+    \@startsection{subsubsection}{3}{\z@}{8\p@ \@plus 2\p@ \@minus 2\p@}%
     {4\p@}{\subsecfnt}%
 }
 %\def\paragraph{%
@@ -1472,6 +1479,10 @@ breaklines=true,
     \gdef\GOfrench{\aeguill@GOfrench \aeguills}%
   \fi
   }
+
+
+%% @jsinger
+\makeatother
 
 \endinput
 %
