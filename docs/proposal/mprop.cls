@@ -102,4 +102,62 @@ Name: & \rule{4.0cm}{0.5mm} & Signature: & \rule{4.5cm}{0.5mm} \\
 \end{tabular}
 }
 
-\usepackage[defernumbers=true]{biblatex}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[percent]{overpic}
+
+\usepackage[defernumbers=true,maxnames=2]{biblatex}
+\usepackage{csquotes}
+
+\renewbibmacro*{textcite:init}{%
+  \ifnumless{\value{multicitecount}}{2}
+    {\global\boolfalse{cbx:parens}}
+    {}%
+  \global\undef\cbx@lasthash
+  \global\undef\cbx@lastyear}
+
+\renewbibmacro*{textcite}{%
+   \ifboolexpr{test {\iffieldequals{namehash}{\cbx@lasthash}}
+               and test {\iffieldequals{labelyear}{\cbx@lastyear}}}
+    {\setunit{\multicitedelim}}
+    {\ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\printnames{labelname}}%
+     \setunit*{\printdelim{nameyeardelim}}%
+     \printlabeldate
+     \setunit{\printdelim{namelabeldelim}}%
+     \printtext{\bibopenbracket}\global\booltrue{cbx:parens}%
+     \stepcounter{textcitecount}}%
+  \savefield{namehash}{\cbx@lasthash}%
+  \savefield{labelyear}{\cbx@lastyear}%
+  \ifnumequal{\value{citecount}}{1}
+    {\usebibmacro{prenote}}
+    {}%
+  \usebibmacro{cite}%
+  \setunit{%
+    \ifbool{cbx:parens}
+      {\bibclosebracket\global\boolfalse{cbx:parens}}
+      {}%
+    \textcitedelim}}
+
+\DeclareCiteCommand{\textcite}[\cbx@textcite@init\cbx@textcite]
+  {\gdef\cbx@savedkeys{}%
+   \citetrackerfalse%
+   \pagetrackerfalse%
+   \DeferNextCitekeyHook%
+   \usebibmacro{textcite:init}}
+  {\ifthenelse{\iffirstcitekey\AND\value{multicitetotal}>0}
+     {\protected@xappto\cbx@savedcites{()(\thefield{multipostnote})}%
+      \global\clearfield{multipostnote}}
+     {}%
+   \xappto\cbx@savedkeys{\thefield{entrykey},}%
+   \ifboolexpr{test {\iffieldequals{namehash}{\cbx@lasthash}}
+               and test {\iffieldequals{labelyear}{\cbx@lastyear}}}
+     {}
+     {\stepcounter{textcitetotal}}%
+   \savefield{namehash}{\cbx@lasthash}%
+   \savefield{labelyear}{\cbx@lastyear}}
+  {}
+  {\protected@xappto\cbx@savedcites{%
+     [\thefield{prenote}][\thefield{postnote}]{\cbx@savedkeys}}}
