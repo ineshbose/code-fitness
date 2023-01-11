@@ -10,6 +10,11 @@ export default <Linter.Config>{
       parserOptions: {
         parser: { ts: '@typescript-eslint/parser' },
       },
+      rules: {
+        'no-undef': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-mutable-exports': 'off',
+      },
     },
   ],
 };

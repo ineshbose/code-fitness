@@ -1,4 +1,6 @@
 *.example linguist-detectable=false
 *.cls linguist-vendored
 *.tex linguist-detectable=false
-mprop.tex linguist-detectable=true
+docs/mprop.tex linguist-detectable=true
+docs/mpaper.tex linguist-detectable=true
+*.vendored.* linguist-vendored

@@ -6,11 +6,13 @@ import {
   window,
   Uri,
   ViewColumn,
+  extensions,
 } from 'vscode';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { webview as appWebview } from 'app';
+import type { GitExtension, API as GitAPI } from '../types/git.vendored';
 
 export default class MainPanel {
   // eslint-disable-next-line no-use-before-define
@@ -22,9 +24,19 @@ export default class MainPanel {
 
   private _nonce!: string;
 
+  private gitExtension: GitAPI | undefined;
+
   private constructor(panel: WebviewPanel, extensionUri: Uri) {
     this._panel = panel;
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+
+    this.gitExtension = extensions
+      .getExtension<GitExtension>('vscode.git')
+      ?.exports.getAPI(1);
+
+    if (!this.gitExtension) {
+      throw new Error('Git Extension not enabled!');
+    }
 
     this._panel.webview.html = this._getWebviewContent(
       this._panel.webview,
@@ -77,7 +89,12 @@ export default class MainPanel {
 
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
     const content = appWebview(webview, extensionUri, 'dist')
-      .replace('<body ', '<body data-token="" ')
+      .replace(
+        '<body ',
+        `<body data-repositories="${this.gitExtension?.repositories
+          .map((r) => r.rootUri)
+          .join()}" `
+      )
       .replaceAll('<script ', `<script nonce="${this._nonce}" `);
 
     return content;

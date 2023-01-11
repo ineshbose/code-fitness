@@ -7,3 +7,10 @@ declare namespace App {
   // interface PageData {}
   // interface Platform {}
 }
+
+type FitPlugin = {
+  id: string;
+  name: string;
+  data?: Array<import('chart.js').ChartConfigurationInstance>;
+  open?: boolean;
+};
