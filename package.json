@@ -6,8 +6,7 @@
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "packages/*",
-    "packages/shared/*",
-    "packages/plugins/*"
+    "packages/shared/*"
   ],
   "scripts": {
     "build": "turbo run build",

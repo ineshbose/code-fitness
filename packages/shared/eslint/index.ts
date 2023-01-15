@@ -34,5 +34,6 @@ export = <Linter.Config>{
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };

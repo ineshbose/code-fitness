@@ -31,11 +31,17 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
-    "mri": "^1.2.0",
     "consola": "^2.15.3",
-    "cosmiconfig": "^8.0.0"
+    "cosmiconfig": "^8.0.0",
+    "defu": "^6.1.1",
+    "mri": "^1.2.0"
   },
   "devDependencies": {
     "tsconfig": "*"
+  },
+  "build": {
+    "externals": [
+      "chart.js"
+    ]
   }
 }

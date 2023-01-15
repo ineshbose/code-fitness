@@ -102,7 +102,6 @@ export default class MainPanel {
 
   private _setWebviewMessageListener(webview: Webview) {
     webview.onDidReceiveMessage(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (message: any) => {
         const { command } = message;
         const { text } = message;

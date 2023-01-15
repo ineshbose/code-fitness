@@ -1,5 +1,5 @@
 {
-  "name": "wakatime-plugin",
+  "name": "code-fitness-plugin-wakatime",
   "version": "0.0.0",
   "description": "",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
@@ -33,6 +33,10 @@
   },
   "devDependencies": {
     "@types/btoa": "^1.2.3",
+    "core": "*",
     "octokit": "^2.0.10"
+  },
+  "build": {
+    "externals": ["core"]
   }
 }
