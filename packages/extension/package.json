@@ -37,8 +37,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "app": "*",
-    "demo": "*"
+    "app": "*"
   },
   "devDependencies": {
     "@types/vscode": "^1.69.0",

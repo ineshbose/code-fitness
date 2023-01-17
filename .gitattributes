@@ -1,6 +1,5 @@
 *.example linguist-detectable=false
+docs/* linguist-documentation=false
 *.cls linguist-vendored
-*.tex linguist-detectable=false
-docs/mprop.tex linguist-detectable=true
-docs/mpaper.tex linguist-detectable=true
 *.vendored.* linguist-vendored
+packages/app/**/*.ts linguist-language=Svelte

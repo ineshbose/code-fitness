@@ -2,7 +2,7 @@
 <br />
 <div align="center">
 <p align="center">
-  <img alt="Code Fitness logo" src="https://raw.githubusercontent.com/ineshbose/code-fitness/main/.github/logo.png" height="250px">
+  <img alt="Code Fitness logo" src="https://raw.githubusercontent.com/ineshbose/code-fitness/main/.github/logo.svg" height="250px">
 
   <h3 align="center">Code Fitness 💪</h3>
 
