@@ -34,7 +34,8 @@
     "consola": "^2.15.3",
     "cosmiconfig": "^8.0.0",
     "defu": "^6.1.1",
-    "mri": "^1.2.0"
+    "mri": "^1.2.0",
+    "scule": "^1.0.0"
   },
   "devDependencies": {
     "tsconfig": "*"

@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
-  const pass = 'true'; // dev TODO
+  const pass = process.env.DEV_PASS;
 
   return getQuery(event).pass === pass
-    ? (await useStorage().getItem('test:foo')) || 204
+    ? (await useStorage().getItem('db:foo')) || 204
     : 403;
 });

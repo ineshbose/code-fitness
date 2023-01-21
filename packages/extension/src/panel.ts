@@ -8,10 +8,12 @@ import {
   ViewColumn,
   extensions,
 } from 'vscode';
+import { kebabCase } from 'scule';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { webview as appWebview } from 'app';
+import DepUtils from './utils.vendored';
 import type { GitExtension, API as GitAPI } from '../types/git.vendored';
 
 export default class MainPanel {
@@ -26,6 +28,8 @@ export default class MainPanel {
 
   private gitExtension: GitAPI | undefined;
 
+  private depUtils: DepUtils;
+
   private constructor(panel: WebviewPanel, extensionUri: Uri) {
     this._panel = panel;
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
@@ -38,9 +42,12 @@ export default class MainPanel {
       throw new Error('Git Extension not enabled!');
     }
 
-    this._panel.webview.html = this._getWebviewContent(
-      this._panel.webview,
-      extensionUri
+    this.depUtils = new DepUtils(extensionUri);
+
+    this._getWebviewContent(this._panel.webview, extensionUri).then(
+      (content) => {
+        this._panel.webview.html = content;
+      }
     );
 
     this._setWebviewMessageListener(this._panel.webview);
@@ -87,13 +94,24 @@ export default class MainPanel {
     }
   }
 
-  private _getWebviewContent(webview: Webview, extensionUri: Uri) {
+  private async _getWebviewContent(webview: Webview, extensionUri: Uri) {
     const content = appWebview(webview, extensionUri, 'dist')
       .replace(
         '<body ',
-        `<body data-repositories="${this.gitExtension?.repositories
-          .map((r) => r.rootUri)
-          .join()}" `
+        `<body ${Object.entries({
+          // plugin-0 -> github, plugin-1 -> wakatime
+          'plugin-0-repolink': (
+            await Promise.all(
+              this.gitExtension?.repositories.map((r) =>
+                r.getConfig('remote.origin.url')
+              ) || []
+            )
+          ).join(),
+          'plugin-1-credentials': this.depUtils.wakatimeKey,
+          'plugin-1-project': this.depUtils.wakatimeProjectName,
+        })
+          .map(([k, v]) => `data-${kebabCase(k)}="${v}"`)
+          .join(' ')} `
       )
       .replaceAll('<script ', `<script nonce="${this._nonce}" `);
 

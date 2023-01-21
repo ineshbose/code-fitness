@@ -31,7 +31,11 @@
   },
   "dependencies": {
     "@vscode/webview-ui-toolkit": "^1.2.0",
-    "chart.js": "^4.1.2"
+    "chart.js": "^4.1.2",
+    "code-fitness-plugin-github": "*",
+    "code-fitness-plugin-wakatime": "*",
+    "core": "*",
+    "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0",

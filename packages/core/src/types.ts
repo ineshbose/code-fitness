@@ -46,6 +46,7 @@ export type PluginConfig =
   | string
   | [string, Record<string, any> | undefined]
   | PluginSetupMediator;
+// | [string, PluginSetupMediator, Record<string, any> | undefined];
 
 export type Config = {
   [k: string]: any;

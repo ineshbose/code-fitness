@@ -1,4 +1,5 @@
 import defu from 'defu';
+import { camelCase } from 'scule';
 import { loadConfig, loadPlugins } from './config';
 import type { Config, PluginExports } from './types';
 
@@ -7,9 +8,14 @@ export default class CodeFitness {
 
   config: Config;
 
+  documentOptions: [string, any][];
+
   constructor(config?: Config) {
     this.plugins = {};
     this.config = config || loadConfig();
+    this.documentOptions = Object.entries(
+      document ? { ...document.body.dataset } : {}
+    );
 
     if (this.config.configPath) {
       this.config = defu(config, loadConfig(this.config.configPath));
@@ -21,7 +27,17 @@ export default class CodeFitness {
 
     await Promise.all(
       pluginsArr.map(async ([name, options, setup]) => {
-        this.plugins[name] = await setup(options, this);
+        this.plugins[name] = await setup(
+          {
+            ...Object.fromEntries(
+              this.documentOptions.flatMap(([k, v]) =>
+                k.startsWith(name) ? [[camelCase(k.replace(name, '')), v]] : []
+              )
+            ),
+            ...options,
+          },
+          this
+        );
       })
     );
   }

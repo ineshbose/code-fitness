@@ -1,5 +1,4 @@
 import consola from 'consola';
-import { resolve } from 'path';
 import { cosmiconfigSync } from 'cosmiconfig';
 import type { Config, PluginSetupMediator } from './types';
 
@@ -23,7 +22,7 @@ export const loadPlugins = (config: Config) => {
 
       try {
         const plugin = (await import(
-          resolve(`code-fitness-plugin-${name}`)
+          `code-fitness-plugin-${name}`
         )) as PluginSetupMediator;
 
         return [name, options, plugin] as const;

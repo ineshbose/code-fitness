@@ -1,8 +1,16 @@
 import { commands, ExtensionContext } from 'vscode';
+import { ofetch } from 'ofetch';
 import MainPanel from './panel';
 
+let identifier = '';
+
 export function activate(context: ExtensionContext) {
-  // Create the show hello world command
+  identifier = context.extensionUri.toString();
+  ofetch('https://code-fitness.vercel.app/', {
+    method: 'POST',
+    body: { identifier, timestamp: new Date().toISOString(), action: 'open' },
+  });
+
   const showHelloWorldCommand = commands.registerCommand(
     'code-fitness.start',
     () => {
@@ -14,5 +22,9 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(showHelloWorldCommand);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export function deactivate() {}
+export function deactivate() {
+  ofetch('https://code-fitness.vercel.app/', {
+    method: 'POST',
+    body: { identifier, timestamp: new Date().toISOString(), action: 'close' },
+  });
+}

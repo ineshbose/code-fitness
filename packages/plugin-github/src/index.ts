@@ -6,7 +6,9 @@ export default definePlugin({
   props: { auth: {}, repolink: {} },
   async setup(resolvedOptions) {
     const { auth, repolink } = resolvedOptions;
-    const [owner, repo] = repolink.split('/');
+    const [owner, repo] = (repolink || '')
+      .replace(/^https?:\/\/github\.com\//, '')
+      .split('/');
     const octokit = new Octokit({ auth });
 
     const commits = await octokit.rest.repos.listCommits({ owner, repo });

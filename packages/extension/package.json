@@ -37,7 +37,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "app": "*"
+    "app": "*",
+    "ofetch": "^1.0.0"
   },
   "devDependencies": {
     "@types/vscode": "^1.69.0",
