@@ -14,5 +14,9 @@ export const definePlugin = <T extends PluginOptions>(
     defaultOptions[k as keyof T] = v.default;
   });
 
-  return (inputs, core) => schema.setup(<T>defu(inputs, defaultOptions), core);
+  return () => ({
+    ...schema,
+    setup: (inputs, core) =>
+      schema.setup(<T>defu(inputs, defaultOptions), core),
+  });
 };

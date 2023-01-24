@@ -25,7 +25,9 @@ describe(pkgName, () => {
       }),
     });
 
-    const tracker = new CodeFitness({ plugins: [plugin] });
+    const tracker = new CodeFitness({
+      plugins: [plugin],
+    });
     await tracker.init();
 
     const output = tracker.export();
@@ -33,7 +35,7 @@ describe(pkgName, () => {
     expect(JSON.stringify(output)).toBe(
       JSON.stringify([
         {
-          name: 'plugin-0',
+          name: 'Test plugin',
           data: [
             { title: 'First', data: [123] },
             { title: 'Second', data: [456, 789] },

@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "icon": "https://raw.githubusercontent.com/ineshbose/code-fitness/main/.github/logo.png",
   "engines": {
     "vscode": "^1.69.0"
   },
@@ -19,13 +20,20 @@
     "commands": [
       {
         "command": "code-fitness.start",
-        "title": "Start new coding session"
-      },
-      {
-        "command": "code-fitness.reload",
-        "title": "Reload coding session"
+        "title": "Open dashboard",
+        "category": "Code Fitness",
+        "icon": "$(code-fitness)"
       }
-    ]
+    ],
+    "icons": {
+      "code-fitness": {
+        "description": "Code Fitness icon",
+        "default": {
+          "fontPath": "dist/cf-font.woff",
+          "fontCharacter": "\\EA01"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",

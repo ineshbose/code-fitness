@@ -37,15 +37,19 @@ export type PluginDefinition<T extends PluginOptions = PluginOptions> =
     setup: PluginSetup<keyof T>;
   };
 
-export type PluginSetupMediator<T extends PluginOptions = PluginOptions> = (
-  inputs: PluginInputs<PluginProps<T>>,
-  core: Core
-) => PluginExports | Promise<PluginExports>;
+export type PluginSetupMediator<T extends PluginOptions = PluginOptions> =
+  () => PluginDefinition<T> & {
+    setup: (
+      inputs: PluginInputs<PluginProps<T>>,
+      core: Core
+    ) => PluginExports | Promise<PluginExports>;
+  };
 
 export type PluginConfig =
   | string
   | [string, Record<string, any> | undefined]
   | PluginSetupMediator;
+// | PluginSetup;
 // | [string, PluginSetupMediator, Record<string, any> | undefined];
 
 export type Config = {

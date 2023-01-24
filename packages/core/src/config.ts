@@ -14,10 +14,13 @@ export const loadConfig = (configFilePath?: string) => {
 export const loadPlugins = (config: Config) => {
   return Promise.all(
     config.plugins?.map(async (p, idx) => {
+      // plugin is passed as a(n imported) function
       if (typeof p === 'function') {
-        return [`plugin-${idx}`, {}, p] as const;
+        const { name, setup } = p();
+        return [name || `plugin-${idx}`, {}, setup] as const;
       }
 
+      // else it is passed as a string or [string, options]
       const [name, options = {}] = Array.isArray(p) ? p : [p];
 
       try {
@@ -25,7 +28,9 @@ export const loadPlugins = (config: Config) => {
           `code-fitness-plugin-${name}`
         )) as PluginSetupMediator;
 
-        return [name, options, plugin] as const;
+        const { name: pName, setup } = plugin();
+
+        return [pName || name, options, setup] as const;
       } catch (e) {
         consola.error(`Error loading plugin "${name}": ${e}`);
 

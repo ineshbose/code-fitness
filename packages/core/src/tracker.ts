@@ -10,16 +10,20 @@ export default class CodeFitness {
 
   documentOptions: [string, any][];
 
+  datetime: Date;
+
   constructor(config?: Config) {
     this.plugins = {};
     this.config = config || loadConfig();
     this.documentOptions = Object.entries(
-      document ? { ...document.body.dataset } : {}
+      typeof document === 'undefined' ? {} : { ...document.body.dataset }
     );
 
     if (this.config.configPath) {
       this.config = defu(config, loadConfig(this.config.configPath));
     }
+
+    this.datetime = new Date();
   }
 
   async init() {

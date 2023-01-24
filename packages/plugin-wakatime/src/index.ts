@@ -6,7 +6,7 @@ import { definePlugin } from 'core';
 import type { PluginConfig } from 'core';
 
 export default definePlugin({
-  name: 'wakatime-plugin',
+  name: 'wakatime',
   props: {
     credentials: {},
     project: {},
@@ -19,7 +19,7 @@ export default definePlugin({
     const apiFetch = ofetch.create({
       baseURL: joinURL(withHttps(apiBase), '/users/current'),
       // params: { api_key: credentials },
-      // mode: 'no-cors',
+      mode: 'no-cors',
       // headers: {
       //   Authorization: `Basic ${(document ? btoa : btoaNode)(credentials)}`,
       // },

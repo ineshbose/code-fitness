@@ -13,9 +13,9 @@
   <PluginHeader name={plugin.name} bind:open />
 
   <div
-    style={`/* flex-grow: 1; */ gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: auto; display: ${
-      open ? 'grid' : 'none'
-    };`}
+    style={`display: ${
+      open ? 'flex' : 'none'
+    }; /* flex-grow: 1; */ gap: 1rem; overflow: auto; flex-wrap: wrap; justify-content: space-between;`}
   >
     {#if plugin.data && plugin.data.length > 0}
       {#each plugin.data as d}

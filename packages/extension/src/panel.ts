@@ -78,6 +78,7 @@ export default class MainPanel {
         { enableScripts: true }
       );
 
+      panel.iconPath = Uri.joinPath(extensionUri, 'dist', 'favicon.ico');
       MainPanel.currentPanel = new MainPanel(panel, extensionUri);
     }
   }
@@ -100,15 +101,15 @@ export default class MainPanel {
         '<body ',
         `<body ${Object.entries({
           // plugin-0 -> github, plugin-1 -> wakatime
-          'plugin-0-repolink': (
+          'github-repolink': (
             await Promise.all(
               this.gitExtension?.repositories.map((r) =>
                 r.getConfig('remote.origin.url')
               ) || []
             )
           ).join(),
-          'plugin-1-credentials': this.depUtils.wakatimeKey,
-          'plugin-1-project': this.depUtils.wakatimeProjectName,
+          'wakatime-credentials': this.depUtils.wakatimeKey,
+          'wakatime-project': this.depUtils.wakatimeProjectName,
         })
           .map(([k, v]) => `data-${kebabCase(k)}="${v}"`)
           .join(' ')} `
