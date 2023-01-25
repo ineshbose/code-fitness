@@ -46,10 +46,18 @@ export default class CodeFitness {
     );
   }
 
-  export() {
-    return Object.entries(this.plugins).map(([name, fn]) => ({
-      name,
-      data: this.config.charts ? (fn.exportCharts || fn.export)() : fn.export(),
-    }));
+  async export() {
+    return Promise.all(
+      Object.entries(this.plugins).map(async ([name, fn]) => ({
+        name,
+        data: await (this.config.charts
+          ? (fn.exportCharts || fn.export)()
+          : fn.export()),
+      }))
+    );
+  }
+
+  getExport(name: string) {
+    return this.plugins[name].export();
   }
 }

@@ -1,6 +1,8 @@
 import type { ChartConfigurationInstance } from 'chart.js';
 import type Core from './tracker';
 
+type PromiseLike<T> = T | Promise<T>;
+
 export type PluginMeta = {
   name: string;
   [key: string]: any;
@@ -22,14 +24,14 @@ export type PluginInputs<T extends PluginProps = PluginProps> = {
 };
 
 export type PluginExports = {
-  export: () => Array<{ title: string; data: Array<any> }>;
-  exportCharts?: () => Array<ChartConfigurationInstance>;
+  export: () => PromiseLike<Array<{ title: string; data: Array<any> }>>;
+  exportCharts?: () => PromiseLike<Array<ChartConfigurationInstance>>;
 };
 
 export type PluginSetup<T extends string | number | symbol = string> = (
   resolvedOptions: Record<T, any>,
   core: Core
-) => PluginExports | Promise<PluginExports>;
+) => PromiseLike<PluginExports>;
 
 export type PluginDefinition<T extends PluginOptions = PluginOptions> =
   PluginMeta & {
@@ -42,7 +44,7 @@ export type PluginSetupMediator<T extends PluginOptions = PluginOptions> =
     setup: (
       inputs: PluginInputs<PluginProps<T>>,
       core: Core
-    ) => PluginExports | Promise<PluginExports>;
+    ) => PromiseLike<PluginExports>;
   };
 
 export type PluginConfig =

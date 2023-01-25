@@ -30,7 +30,7 @@ describe(pkgName, () => {
     });
     await tracker.init();
 
-    const output = tracker.export();
+    const output = await tracker.export();
 
     expect(JSON.stringify(output)).toBe(
       JSON.stringify([

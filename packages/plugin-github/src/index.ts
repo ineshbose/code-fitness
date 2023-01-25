@@ -15,19 +15,19 @@ export default definePlugin({
   },
   async setup(resolvedOptions) {
     const { auth, repolink } = resolvedOptions;
-    const [owner, repo] = (repolink || '')
+    const [owner = 'octocat', repo = 'Hello-World'] = (
+      repolink || 'octocat/Hello-World'
+    )
       .replace(/^https?:\/\/github\.com\//, '')
       .split('/');
 
     const octokit = new Octokit({ auth });
     const ungh = new Octokit({ baseUrl: 'https://ungh.cc' });
 
-    const commits = (
-      await octokit.rest.repos.listCommits({
-        owner,
-        repo,
-      })
-    ).data.slice(0, 10);
+    const { data: commits } = await octokit.rest.repos.listCommits({
+      owner,
+      repo,
+    });
 
     const fileHeatMap: Record<string, any> = {};
 
@@ -43,7 +43,7 @@ export default definePlugin({
       };
     };
 
-    commits.forEach(async (c) => {
+    commits.slice(0, 10).forEach(async (c) => {
       const { data: commit } = await octokit.rest.repos.getCommit({
         owner,
         repo,
@@ -63,8 +63,9 @@ export default definePlugin({
     const shieldsIoData = []; // can leverage repolink and response SVG
 
     return {
-      export() {
-        return [{ title: 'Commits', data: commits }];
+      export: () => [{ title: 'Commits', data: commits }],
+      exportCharts() {
+        return [];
       },
     };
   },

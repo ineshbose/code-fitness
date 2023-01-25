@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { FitPlugin } from 'src/app';
   import { onMount } from 'svelte';
   import { plugins } from '../stores';
 
@@ -10,7 +11,7 @@
   });
 
   const scrollToViewPlugin = (p: FitPlugin) => {
-    const el = document.querySelector(`#${p.id}`);
+    const el = document.querySelector(`#${p.name}`);
 
     return el
       ? el.scrollIntoView({
@@ -25,7 +26,7 @@
 >
   <h1>Code Fitness</h1>
 
-  <vscode-dropdown>
+  <vscode-dropdown disabled={$plugins.length === 0}>
     <vscode-option>Jump to..</vscode-option>
     {#each $plugins as p}
       <!-- svelte-ignore a11y-click-events-have-key-events -->

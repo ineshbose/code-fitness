@@ -42,5 +42,5 @@
     </svg>
   </vscode-button>
 
-  <h2>{name}</h2>
+  <h2 style="text-transform: uppercase; letter-spacing: 0.05em;">{name}</h2>
 </div>

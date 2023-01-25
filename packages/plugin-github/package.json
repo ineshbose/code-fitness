@@ -24,6 +24,7 @@
     "build": "unbuild",
     "dev": "vitest dev",
     "lint": "eslint .",
+    "test": "npm run lint && vitest run --coverage",
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {

@@ -54,11 +54,9 @@ export default definePlugin({
     ];
 
     return {
-      export: () => [
-        ...exportData,
-        // { title: '', data: getProjectData(project) },
-        // { title: '', data: getSummary({ project, start: '', end: '' }) },
-      ],
+      export() {
+        return exportData;
+      },
     };
   },
 });

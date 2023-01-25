@@ -1,8 +1,5 @@
-import { readable } from 'svelte/store';
-import { ghData, wtData } from './sample';
+import { writable } from 'svelte/store';
+import type { FitPlugin } from './app';
 
-// eslint-disable-next-line import/prefer-default-export
-export const plugins = readable<FitPlugin[]>([
-  { id: 'github', name: 'GitHub', data: ghData },
-  { id: 'wakatime', name: 'WakaTime', data: wtData },
-]);
+export const plugins = writable<FitPlugin[]>([]);
+export const addPlugin = (p: FitPlugin) => plugins.update((n) => [p, ...n]);

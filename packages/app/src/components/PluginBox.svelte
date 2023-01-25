@@ -1,13 +1,15 @@
 <script lang="ts">
+  import type { FitPlugin } from 'src/app';
   import PluginHeader from './PluginHeader.svelte';
   import PluginChart from './PluginChart.svelte';
 
-  export let plugin: FitPlugin;
+  // need to handle ChartConfigurationInstance | native data
+  export let plugin: FitPlugin | any;
   let open = true;
 </script>
 
 <div
-  id={plugin.id}
+  id={plugin.name}
   style="display: flex; flex-direction: column; margin-top: 1rem; padding: 0.25rem 1rem; max-height: 24rem; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);"
 >
   <PluginHeader name={plugin.name} bind:open />
