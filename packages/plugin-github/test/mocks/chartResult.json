@@ -1,0 +1,107 @@
+[
+  {
+    "type": "radar",
+    "data": {
+      "labels": [
+        "Tuesday",
+        "Wednesday"
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {
+        "legend": {
+          "display": false
+        },
+        "title": {
+          "display": true,
+          "text": "3 Commits"
+        }
+      }
+    }
+  },
+  {
+    "type": "bubble",
+    "data": {
+      "labels": [
+        "README"
+      ],
+      "datasets": [
+        {
+          "label": "Changes to Files",
+          "data": [
+            {
+              "x": 3,
+              "y": 2,
+              "r": 3
+            }
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {
+        "legend": {
+          "display": false
+        },
+        "title": {
+          "display": true,
+          "text": "5 Changes to Files"
+        }
+      },
+      "scales": {
+        "x": {
+          "title": {
+            "display": true,
+            "text": "Additions"
+          }
+        },
+        "y": {
+          "title": {
+            "display": true,
+            "text": "Deletions"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        "Spaceghost",
+        "octocat",
+        "Cameron423698"
+      ],
+      "datasets": [
+        {
+          "label": "Contributions",
+          "data": [
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {
+        "legend": {
+          "display": false
+        },
+        "title": {
+          "display": true,
+          "text": "3 Contributions"
+        }
+      }
+    }
+  }
+]

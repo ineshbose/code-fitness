@@ -1,0 +1,47 @@
+[
+  {
+    "title": "3 Commits",
+    "data": [
+      {
+        "date": "Tuesday",
+        "count": 1
+      },
+      {
+        "date": "Wednesday",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "title": "5 Changes to Files",
+    "data": [
+      {
+        "filename": "README",
+        "changes": 5,
+        "additions": 3,
+        "deletions": 2,
+        "count": 3
+      }
+    ]
+  },
+  {
+    "title": "3 Contributions",
+    "data": [
+      {
+        "id": 251370,
+        "username": "Spaceghost",
+        "contributions": 1
+      },
+      {
+        "id": 583231,
+        "username": "octocat",
+        "contributions": 1
+      },
+      {
+        "id": 94719050,
+        "username": "Cameron423698",
+        "contributions": 1
+      }
+    ]
+  }
+]

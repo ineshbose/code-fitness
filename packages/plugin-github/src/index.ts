@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Octokit } from 'octokit';
 import { definePlugin } from 'core';
+import { getLists } from './utils';
 
 export default definePlugin({
   name: 'github',
@@ -24,48 +24,172 @@ export default definePlugin({
     const octokit = new Octokit({ auth });
     const ungh = new Octokit({ baseUrl: 'https://ungh.cc' });
 
-    const { data: commits } = await octokit.rest.repos.listCommits({
-      owner,
-      repo,
-    });
+    const { commits } = await getLists(octokit, owner, repo);
 
-    const fileHeatMap: Record<string, any> = {};
+    const commitDates: Array<{ date: string; count: number }> = [];
+    const commitFiles: Array<
+      Pick<
+        NonNullable<typeof commits[0]['files']>[0],
+        'filename' | 'changes' | 'additions' | 'deletions'
+      > & {
+        count: number;
+      }
+    > = [];
+
+    await Promise.all(
+      commits.map(async ({ commit, sha: ref, files: rawFiles }) => {
+        if (commit.committer?.date) {
+          const date = new Intl.DateTimeFormat('en-GB', {
+            weekday: 'long',
+          }).format(new Date(commit.committer.date));
+          const index = commitDates.findIndex((d) => d.date === date);
+
+          if (index === -1) {
+            commitDates.push({ date, count: 1 });
+          } else {
+            commitDates[index].count += 1;
+          }
+        }
+
+        const files =
+          rawFiles ||
+          (await octokit.rest.repos.getCommit({ owner, repo, ref })).data.files;
+
+        files?.forEach(({ filename, changes, additions, deletions }) => {
+          const index = commitFiles.findIndex((f) => f.filename === filename);
+
+          if (index === -1) {
+            commitFiles.push({
+              filename,
+              changes,
+              additions,
+              deletions,
+              count: 1,
+            });
+          } else {
+            commitFiles[index].count += 1;
+            commitFiles[index].changes += changes;
+            commitFiles[index].additions += additions;
+            commitFiles[index].deletions += deletions;
+          }
+        });
+      })
+    );
 
     const {
-      data: { files },
-    } = (await ungh
-      .request('GET /repos/{owner}/{repo}/files', { owner, repo })
-      .catch(() =>
-        ungh.request('GET /repos/{owner}/{repo}/files/master', { owner, repo })
-      )) as {
+      data: { contributors },
+    } = (await ungh.rest.repos.listContributors({
+      owner,
+      repo,
+    })) as unknown as {
       data: {
-        files: Awaited<ReturnType<typeof ungh.rest.repos.getContent>>['data'];
+        contributors: Array<{
+          id: number;
+          username: string;
+          contributions: number;
+        }>;
+        // | Awaited<
+        //     ReturnType<typeof ungh.rest.repos.listContributors>
+        //   >['data'];
       };
     };
 
-    commits.slice(0, 10).forEach(async (c) => {
-      const { data: commit } = await octokit.rest.repos.getCommit({
-        owner,
-        repo,
-        ref: c.sha,
-      });
-      const { stats } = commit;
-      commit.files?.forEach((f) => {
-        fileHeatMap[f.filename] = commit.commit.committer?.date;
-      });
-    });
-
-    const { data: contributors } = await ungh.rest.repos.listContributors({
-      owner,
-      repo,
-    });
-
-    const shieldsIoData = []; // can leverage repolink and response SVG
+    // const shieldsIoData = await getShields(owner, repo); // can leverage repolink and response SVG
 
     return {
-      export: () => [{ title: 'Commits', data: commits }],
+      export: () => [
+        { title: `${commits.length} Commits`, data: commitDates },
+        {
+          title: `${commitFiles
+            .map(({ changes }) => changes)
+            .reduce((a, b) => a + b)} Changes to Files`,
+          data: commitFiles,
+        },
+        {
+          title: `${contributors
+            .map(({ contributions }) => contributions)
+            .reduce((a, b) => a + b)} Contributions`,
+          data: contributors,
+        },
+      ],
       exportCharts() {
-        return [];
+        return [
+          {
+            type: 'radar',
+            data: {
+              labels: commitDates.map(({ date }) => date),
+              datasets: [
+                {
+                  label: 'Commits',
+                  data: commitDates.map(({ count }) => count),
+                },
+              ],
+            },
+            options: {
+              plugins: {
+                legend: { display: false },
+                title: { display: true, text: `${commits.length} Commits` },
+              },
+            },
+          },
+          {
+            type: 'bubble',
+            data: {
+              labels: commitFiles.map(({ filename }) => filename),
+              datasets: [
+                {
+                  label: 'Changes to Files',
+                  data: commitFiles.map(
+                    ({ count: r, additions: x, deletions: y }) => ({
+                      x,
+                      y,
+                      r,
+                    })
+                  ),
+                },
+              ],
+            },
+            options: {
+              plugins: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: `${commitFiles
+                    .map(({ changes }) => changes)
+                    .reduce((a, b) => a + b)} Changes to Files`,
+                },
+              },
+              scales: {
+                x: { title: { display: true, text: 'Additions' } },
+                y: { title: { display: true, text: 'Deletions' } },
+                // r: { title: { display: true, text: 'Commits' } },
+              },
+            },
+          },
+          {
+            type: 'bar',
+            data: {
+              labels: contributors.map(({ username }) => username),
+              datasets: [
+                {
+                  label: 'Contributions',
+                  data: contributors.map(({ contributions }) => contributions),
+                },
+              ],
+            },
+            options: {
+              plugins: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: `${contributors
+                    .map(({ contributions }) => contributions)
+                    .reduce((a, b) => a + b)} Contributions`,
+                },
+              },
+            },
+          },
+        ];
       },
     };
   },

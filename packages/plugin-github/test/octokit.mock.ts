@@ -12,13 +12,16 @@ export default class Octokit {
     '7fd1a60b01f91b314f59955a4e4d4e80d8edf11d': commit3,
   };
 
-  rest = {
-    repos: <RealOctokit['rest']['repos'] | Record<string, any>>{
+  rest = <RealOctokit['rest'] | Record<string, any>>{
+    repos: {
       listCommits: () => ({ data: this.commitMap.all }),
       getCommit: ({ ref }: any) => ({ data: this.commitMap[ref] }),
       listContributors: async () => ({
         data: await import('./mocks/contributors.json'),
       }),
+    },
+    issues: {
+      listForRepo: async () => ({ data: await import('./mocks/issues.json') }),
     },
   };
 
