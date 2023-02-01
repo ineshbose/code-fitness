@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
 import { definePlugin } from 'core';
-import { getLists } from './utils';
+import { getLists, getShields } from './utils';
 
 export default definePlugin({
   name: 'github',
@@ -24,7 +24,7 @@ export default definePlugin({
     const octokit = new Octokit({ auth });
     const ungh = new Octokit({ baseUrl: 'https://ungh.cc' });
 
-    const { commits } = await getLists(octokit, owner, repo);
+    const { commits, issues } = await getLists(octokit, owner, repo);
 
     const commitDates: Array<{ date: string; count: number }> = [];
     const commitFiles: Array<
@@ -94,7 +94,7 @@ export default definePlugin({
       };
     };
 
-    // const shieldsIoData = await getShields(owner, repo); // can leverage repolink and response SVG
+    const shieldsIoData = await getShields(owner, repo); // can leverage repolink and response SVG
 
     return {
       export: () => [
@@ -191,6 +191,7 @@ export default definePlugin({
           },
         ];
       },
+      raw: () => ({ commits, issues, shieldsIoData }),
     };
   },
 });

@@ -5,11 +5,11 @@ import { join } from 'path';
 config({ path: join(__dirname, '..', '..', '.env') });
 
 export default defineNitroConfig({
+  routeRules: { '/wakaproxy/**': { cors: true } },
   storage: {
     db: {
       driver: 'redis',
       url: process.env.REDIS_URL,
-      maxRetriesPerRequest: null,
     },
   },
 });

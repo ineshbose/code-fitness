@@ -33,6 +33,13 @@
       );
     }
 
+    document.body.setAttribute(
+      'data-wakatime-api-base',
+      `${
+        dev ? 'http://localhost:3000' : 'https://code-fitness.vercel.app'
+      }/wakaproxy`
+    );
+
     if ($plugins.length === 0) {
       const tracker = new CodeFitness({
         charts: true,

@@ -24,8 +24,11 @@ export type PluginInputs<T extends PluginProps = PluginProps> = {
 };
 
 export type PluginExports = {
-  export: () => PromiseLike<Array<{ title: string; data: Array<any> }>>;
+  export: () => PromiseLike<
+    Array<{ title: string; data: Array<any> } | ChartConfigurationInstance>
+  >;
   exportCharts?: () => PromiseLike<Array<ChartConfigurationInstance>>;
+  raw?: () => Record<string, any> | Array<any>;
 };
 
 export type PluginSetup<T extends string | number | symbol = string> = (

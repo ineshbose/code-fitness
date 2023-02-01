@@ -1,59 +1,89 @@
-declare type Commit = {
-  author_avatar_url: string;
-  author_date: string;
-  author_email: string;
-  author_html_url: string;
-  author_name: string;
-  author_url: string;
-  author_username: string;
-  branch: string;
-  committer_avatar_url: string;
-  committer_date: string;
-  committer_email: string;
-  committer_html_url: string;
-  committer_name: string;
-  committer_url: string;
-  committer_username: string;
-  created_at: string;
-  hash: string;
-  html_url: string;
-  human_readable_total: string;
-  human_readable_total_with_seconds: string;
-  id: string;
-  message: string;
-  ref: string;
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
+type CommonMeasure<Fraction extends boolean = true> = {
+  decimal: number;
+  digital: string;
+  hours: number;
+  minutes: number;
+  text: string;
   total_seconds: number;
-  truncated_hash: string;
-  url: string;
-};
+} & (Fraction extends true
+  ? { name: string; percent: number; seconds: number }
+  : Record<string, never>);
 
-declare type Repository = {
-  default_branch: string;
-  description: string;
-  fork_count: number;
-  full_name: string;
-  homepage: string;
-  html_url: string;
-  id: string;
-  is_fork: boolean;
-  is_private: boolean;
-  last_synced_at: string;
-  name: string;
-  provider: string;
-  star_count: number;
-  url: string;
-  watch_count: number;
-};
+interface Category extends CommonMeasure {}
+interface Dependency extends CommonMeasure {}
+interface Editors extends CommonMeasure {}
+interface Language extends CommonMeasure {}
+interface Machine extends CommonMeasure {
+  machine_name_id: string;
+}
+interface OperatingSystem extends CommonMeasure {}
+interface Project extends CommonMeasure {}
+interface Range {
+  date: string;
+  end: Date;
+  start: Date;
+  text: string;
+  timezone: string;
+}
 
-declare type Project = {
-  id: string;
-  name: string;
-  privacy: string;
-  repository: Repository;
-};
+declare interface Status {
+  cached_at?: string;
+  data: {
+    categories: Category[];
+    dependencies: Dependency[];
+    editors: Editors[];
+    grand_total: CommonMeasure<false>;
+    languages: Language[];
+    machines: Machine[];
+    operating_systems: OperatingSystem[];
+    projects: Project[];
+    range: Range;
+  };
+  has_team_features?: boolean;
+}
 
-declare type Response = {
-  commit: Commit;
-  branch: string;
-  project: Project;
-};
+declare interface ProjectData {
+  data: {
+    badge: null;
+    color: null;
+    created_at: Date;
+    has_public_url: boolean;
+    human_readable_last_heartbeat_at: string;
+    id: string;
+    last_heartbeat_at: Date;
+    name: string;
+    repository: null;
+    url: string;
+    urlencoded_name: string;
+  };
+}
+
+declare interface DailyAverage {
+  days_including_holidays: number;
+  days_minus_holidays: number;
+  holidays: number;
+  seconds: number;
+  seconds_including_other_language: number;
+  text: string;
+  text_including_other_language: string;
+}
+
+declare interface Summary {
+  cumulative_total: CommonMeasure<false>;
+  daily_average: DailyAverage;
+  data: {
+    categories: Category[];
+    dependencies: Dependency[];
+    editors: Editor[];
+    grand_total: GrandTotal;
+    languages: Language[];
+    machines: Machine[];
+    operating_systems: OperatingSystem[];
+    projects: Project[];
+    range: Range;
+  }[];
+  end: Date;
+  start: Date;
+}

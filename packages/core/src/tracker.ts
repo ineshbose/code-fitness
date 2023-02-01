@@ -29,20 +29,24 @@ export default class CodeFitness {
   async init() {
     const pluginsArr = await loadPlugins(this.config);
 
-    await Promise.all(
-      pluginsArr.map(async ([name, options, setup]) => {
-        this.plugins[name] = await setup(
-          {
-            ...Object.fromEntries(
-              this.documentOptions.flatMap(([k, v]) =>
-                k.startsWith(name) ? [[camelCase(k.replace(name, '')), v]] : []
-              )
-            ),
-            ...options,
-          },
-          this
-        );
-      })
+    await pluginsArr.reduce(
+      (p, [name, options, setup]) =>
+        p.then(async () => {
+          this.plugins[name] = await setup(
+            {
+              ...Object.fromEntries(
+                this.documentOptions.flatMap(([k, v]) =>
+                  k.startsWith(name)
+                    ? [[camelCase(k.replace(name, '')), v]]
+                    : []
+                )
+              ),
+              ...options,
+            },
+            this
+          );
+        }),
+      Promise.resolve()
     );
   }
 
