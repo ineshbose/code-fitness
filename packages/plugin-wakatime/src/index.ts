@@ -66,24 +66,63 @@ export default definePlugin({
         ? core.plugins.github.raw()
         : undefined;
 
+    const commitData: (Summary & { commit: Octo<'repos', 'getCommit'> })[] = [];
+    const issueData: (Summary & { issue: Octo<'issues', 'get'> })[] = [];
+    // const pullsData: Summary[] = [];
+
     if (githubData) {
-      const { issues }: { issues: Octo<'issues', 'listForRepo'> } = githubData;
-      issues.map(async (i) => {
-        return getSummary({
-          start: new Date(i.created_at).toISOString().slice(0, 10),
-          end: (i.closed_at ? new Date(i.closed_at) : new Date())
-            .toISOString()
-            .slice(0, 10),
-        }).catch(() => undefined);
-      });
+      const { commits, issues } = githubData as {
+        commits: Octo<'repos', 'listCommits'>;
+        issues: Octo<'issues', 'listForRepo'>;
+        // pulls: Octo<'pulls', 'list'>;
+      };
+
+      await Promise.all(
+        commits.slice(0, 5).map(async (c, idx, arr) => {
+          if (!c.commit.committer?.date) return;
+          const start = c.commit.committer.date.slice(0, 10);
+          const end = (
+            idx > 0
+              ? arr[idx - 1].commit.committer?.date || ''
+              : new Date().toISOString()
+          ).slice(0, 10);
+
+          commitData.push({
+            commit: c,
+            ...(await getSummary({ start, end }).catch(() => ({} as Summary))),
+          });
+        })
+      );
+
+      issueData.push(
+        ...(await Promise.all(
+          issues
+            .filter((i) => i.closed_at && i.state === 'closed')
+            .slice(0, 5)
+            .map(async (i) => ({
+              issue: i,
+              ...(await getSummary({
+                start: new Date(i.created_at).toISOString().slice(0, 10),
+                end: (i.closed_at ? new Date(i.closed_at) : new Date())
+                  .toISOString()
+                  .slice(0, 10),
+              }).catch(() => ({} as Summary))),
+            }))
+        ))
+      );
     }
 
-    // const { data: projectData } = await apiFetch<ProjectData>(
-    //   `/projects/${project}`
-    // );
+    const summaryVerbose = [
+      commitData.map((c) => c.data),
+      issueData.map((i) => i.data),
+    ]
+      .flat(2)
+      .filter(Boolean)
+      .sort((a, b) => Date.parse(a.range.date) - Date.parse(b.range.date));
+    // const { data: projectData } = await apiFetch<ProjectData>(`/projects/${project}`);
     const { data: status } = await apiFetch<Status>('/statusbar/today'); // await ofetch.native(`${apiBase}/users/current/statusbar/today?api_key=${credentials}`).then((r) => r.json()) // fallback
 
-    const graph: ChartConfigurationInstance = {
+    const mixedPie: ChartConfigurationInstance = {
       type: 'pie',
       data: { labels: [], datasets: [] },
       options: {
@@ -94,20 +133,43 @@ export default definePlugin({
       },
     };
 
+    const categoriesLine: ChartConfigurationInstance = {
+      type: 'line',
+      data: { labels: [], datasets: [] },
+      options: {
+        plugins: {
+          title: { display: true, text: `${status.grand_total.digital}HRS` },
+          legend: { display: false },
+        },
+      },
+    };
+
+    summaryVerbose.forEach((s) => {
+      if (!categoriesLine.data.labels) categoriesLine.data.labels = [];
+      if (!categoriesLine.data.labels.includes(s.range.date)) {
+        categoriesLine.data.labels.push(s.range.date);
+        // categoriesLine.data.datasets.push({
+        //   label: 'Categories',
+        //   data: s.categories.map((i) => i.total_seconds),
+        // });
+      }
+    });
+
     Object.entries(status || {}).forEach(([k, v]) => {
       if (
         !Array.isArray(v) ||
-        v.length > 25 // ||
-        // graph.data.datasets.length > 5 ||
-        // (graph.data.labels?.length || 0) > 10
+        v.length > 25 ||
+        // mixedPie.data.datasets.length > 5 ||
+        // (mixedPie.data.labels?.length || 0) > 10
+        !['categories', 'languages', 'projects'].includes(k) // cherry picking
       )
         return;
 
       if (isChart) {
-        (graph.data.labels || []).push(
+        (mixedPie.data.labels || []).push(
           ...v.map(({ name }) => `${name} (${k})`)
         );
-        (graph.data.datasets || []).push({
+        (mixedPie.data.datasets || []).push({
           data: v.map(({ percent }) => percent),
         });
       } else {
@@ -118,9 +180,177 @@ export default definePlugin({
       }
     });
 
-    if (isChart) {
-      exportData.push(graph);
-    }
+    exportData.push(
+      ...(isChart
+        ? [
+            ...commitData
+              .filter((c) => c.commit && c.data)
+              .map(({ commit, data }, idx, arr) => {
+                const start = (commit.commit.committer?.date || '').slice(
+                  0,
+                  10
+                );
+                const end = (
+                  idx > 0
+                    ? arr[idx - 1].commit.commit.committer?.date || ''
+                    : new Date().toISOString()
+                ).slice(0, 10);
+
+                const countMap: Record<
+                  Extract<
+                    keyof Summary['data'][number],
+                    'branches' | 'categories' | 'entities' | 'languages' // | 'dependencies' | 'editors' | 'machines' | 'operating_systems'
+                  >,
+                  Record<string, number[]>
+                > = {
+                  branches: {},
+                  categories: {},
+                  entities: {},
+                  languages: {},
+                };
+
+                data.forEach((d, dIdx) =>
+                  (
+                    ['branches', 'categories', 'entities', 'languages'] as const
+                  ).forEach((i) =>
+                    d[i].forEach((j) => {
+                      const { name } = j;
+                      if (!countMap[i][name]) {
+                        countMap[i][name] = new Array(data.length).fill(0);
+                      }
+
+                      countMap[i][name][dIdx] = j.total_seconds;
+                    })
+                  )
+                );
+
+                return <ChartConfigurationInstance[]>[
+                  {
+                    type: 'bar',
+                    data: {
+                      labels: data.map((d) => d.range.start),
+                      datasets: [
+                        {
+                          label: 'Seconds spent in a day',
+                          data: data.map((d) => d.grand_total.total_seconds),
+                          type: 'line',
+                        },
+                        ...Object.entries(countMap).flatMap(([stack, v]) =>
+                          Object.entries(v).map(([label, values]) => ({
+                            label,
+                            data: values,
+                            stack,
+                          }))
+                        ),
+                      ],
+                    },
+                    options: {
+                      scales: {
+                        x: { stacked: true, display: false, type: 'time' },
+                        y: { stacked: true },
+                      },
+                      plugins: {
+                        title: {
+                          display: true,
+                          text: `Commit ${commit.sha.slice(0, 7)} (+${
+                            commit.stats?.additions || 0
+                          } -${commit.stats?.deletions || 0})`,
+                        },
+                        subtitle: {
+                          display: true,
+                          text: `${start} to ${end}`,
+                        },
+                        legend: { display: false },
+                      },
+                    },
+                  },
+                ];
+              })
+              .flat(),
+            ...issueData
+              .filter((i) => i.issue && i.data)
+              .map(({ issue, data }) => {
+                const start = issue.created_at.slice(0, 10);
+                const end = (issue.closed_at || new Date().toISOString()).slice(
+                  0,
+                  10
+                );
+
+                const countMap: Record<
+                  Extract<
+                    keyof Summary['data'][number],
+                    'branches' | 'categories' | 'entities' | 'languages' // | 'dependencies' | 'editors' | 'machines' | 'operating_systems'
+                  >,
+                  Record<string, number[]>
+                > = {
+                  branches: {},
+                  categories: {},
+                  entities: {},
+                  languages: {},
+                };
+
+                data.forEach((d, dIdx) =>
+                  (
+                    ['branches', 'categories', 'entities', 'languages'] as const
+                  ).forEach((i) =>
+                    d[i].forEach((j) => {
+                      const { name } = j;
+                      if (!countMap[i][name]) {
+                        countMap[i][name] = new Array(data.length).fill(0);
+                      }
+
+                      countMap[i][name][dIdx] = j.total_seconds;
+                    })
+                  )
+                );
+
+                return <ChartConfigurationInstance[]>[
+                  {
+                    type: 'bar',
+                    data: {
+                      labels: data.map((d) => d.range.start),
+                      datasets: [
+                        {
+                          label: 'Seconds spent in a day',
+                          data: data.map((d) => d.grand_total.total_seconds),
+                          type: 'line',
+                        },
+                        ...Object.entries(countMap).flatMap(([stack, v]) =>
+                          Object.entries(v).map(([label, values]) => ({
+                            label,
+                            data: values,
+                            stack,
+                          }))
+                        ),
+                      ],
+                    },
+                    options: {
+                      scales: {
+                        x: { stacked: true, display: false, type: 'time' },
+                        y: { stacked: true },
+                      },
+                      plugins: {
+                        title: {
+                          display: true,
+                          text: `Issue #${issue.number}`,
+                        },
+                        subtitle: {
+                          display: true,
+                          text: `opened ${start}, closed ${end}`,
+                        },
+                        legend: { display: false },
+                      },
+                    },
+                  },
+                ];
+              })
+              .flat(),
+          ]
+        : [
+            { title: 'Issue Timeline', data: issueData },
+            { title: 'Commit Timeline', data: commitData },
+          ])
+    );
 
     return {
       export() {

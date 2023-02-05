@@ -32,9 +32,11 @@
   "dependencies": {
     "@vscode/webview-ui-toolkit": "^1.2.0",
     "chart.js": "^4.1.2",
+    "chartjs-adapter-date-fns": "^3.0.0",
     "code-fitness-plugin-github": "*",
     "code-fitness-plugin-wakatime": "*",
     "core": "*",
+    "date-fns": "^2.29.3",
     "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {

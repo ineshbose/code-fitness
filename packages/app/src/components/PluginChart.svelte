@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Chart, registerables } from 'chart.js';
+  import 'chartjs-adapter-date-fns';
   import type { ChartConfigurationInstance } from 'chart.js';
 
   // export let id: string; // `${plugin.id}-${d.type}-${idx}`

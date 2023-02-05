@@ -13,6 +13,9 @@
 
   let loading = true;
 
+  // eslint-disable-next-line no-unused-expressions, no-console
+  dev && plugins.subscribe(console.log);
+
   onMount(async () => {
     const { provideVSCodeDesignSystem, vsCodeProgressRing } = await import(
       '@vscode/webview-ui-toolkit'

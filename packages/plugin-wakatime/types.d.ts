@@ -28,6 +28,13 @@ interface Range {
   timezone: string;
 }
 
+interface Branch extends CommonMeasure {}
+
+interface Entity extends CommonMeasure {
+  project_root_count: any;
+  type: string;
+}
+
 declare interface Status {
   cached_at?: string;
   data: {
@@ -74,16 +81,18 @@ declare interface Summary {
   cumulative_total: CommonMeasure<false>;
   daily_average: DailyAverage;
   data: {
+    branches: Branch[];
     categories: Category[];
     dependencies: Dependency[];
     editors: Editor[];
-    grand_total: GrandTotal;
+    entities: Entity[];
+    grand_total: CommonMeasure<false>;
     languages: Language[];
     machines: Machine[];
     operating_systems: OperatingSystem[];
     projects: Project[];
     range: Range;
   }[];
-  end: Date;
-  start: Date;
+  end: string;
+  start: string;
 }

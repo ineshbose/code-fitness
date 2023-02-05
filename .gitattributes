@@ -3,3 +3,4 @@ docs/* linguist-documentation=false
 *.cls linguist-vendored
 *.vendored.* linguist-vendored
 packages/app/**/*.ts linguist-language=Svelte
+packages/plugin-*/**/*.ts linguist-detectable=false

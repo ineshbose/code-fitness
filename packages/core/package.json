@@ -43,6 +43,17 @@
   "build": {
     "externals": [
       "chart.js"
-    ]
+    ],
+    "rollup": {
+      "replace": {
+        "values": {
+          "import(": "import(/* @vite-ignore */"
+        },
+        "delimiters": [
+          "",
+          ""
+        ]
+      }
+    }
   }
 }

@@ -13,7 +13,8 @@ export const getLists = async (
   issues: getData(
     await octokit.rest.issues.listForRepo({ owner, repo, state: 'all' })
   ),
-  // branches: getData(await octokit.rest.repos.listBranches({ owner, repo })),
+  pulls: getData(await octokit.rest.pulls.list({ owner, repo, state: 'all' })),
+  branches: getData(await octokit.rest.repos.listBranches({ owner, repo })),
 });
 
 const fetchShields = (
