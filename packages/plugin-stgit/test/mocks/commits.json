@@ -1,0 +1,73 @@
+[
+  {
+    "id": "17f199fb76e59d40c28d0e43da83958bbd84fd6a",
+    "short_id": "17f199fb",
+    "created_at": "2022-09-28T13:41:55.000+01:00",
+    "parent_ids": [
+      "96bc9101c3e6dc29f9b3346170da2b9640e69849",
+      "9e2a2afaef5e207ddea0047aea6fbabc678eb4ae"
+    ],
+    "title": "Merge branch 'twsadmin-main-patch-88891' into 'main'",
+    "message": "Merge branch 'twsadmin-main-patch-88891' into 'main'\n\nCorrects date in README instructions for 2022.\n\nSee merge request asep/asep-coursework-2022!1",
+    "author_name": "Tim Storer Admin",
+    "author_email": "tws@dcs.gla.ac.uk",
+    "authored_date": "2022-09-28T13:41:55.000+01:00",
+    "committer_name": "Tim Storer Admin",
+    "committer_email": "tws@dcs.gla.ac.uk",
+    "committed_date": "2022-09-28T13:41:55.000+01:00",
+    "trailers": {},
+    "web_url": "https://stgit.dcs.gla.ac.uk/asep/asep-coursework-2022/-/commit/17f199fb76e59d40c28d0e43da83958bbd84fd6a"
+  },
+  {
+    "id": "9e2a2afaef5e207ddea0047aea6fbabc678eb4ae",
+    "short_id": "9e2a2afa",
+    "created_at": "2022-09-28T13:05:03.000+01:00",
+    "parent_ids": [
+      "96bc9101c3e6dc29f9b3346170da2b9640e69849"
+    ],
+    "title": "Corrects date in README instructions for 2022.",
+    "message": "Corrects date in README instructions for 2022.",
+    "author_name": "Tim Storer Admin",
+    "author_email": "tws@dcs.gla.ac.uk",
+    "authored_date": "2022-09-28T13:05:03.000+01:00",
+    "committer_name": "Tim Storer Admin",
+    "committer_email": "tws@dcs.gla.ac.uk",
+    "committed_date": "2022-09-28T13:05:03.000+01:00",
+    "trailers": {},
+    "web_url": "https://stgit.dcs.gla.ac.uk/asep/asep-coursework-2022/-/commit/9e2a2afaef5e207ddea0047aea6fbabc678eb4ae"
+  },
+  {
+    "id": "96bc9101c3e6dc29f9b3346170da2b9640e69849",
+    "short_id": "96bc9101",
+    "created_at": "2022-09-27T12:24:57.000+01:00",
+    "parent_ids": [
+      "fda7c9583471e8f6efe69f09670add642522d797"
+    ],
+    "title": "Updates",
+    "message": "Updates\n",
+    "author_name": "twsswt",
+    "author_email": "timothy.storer@glasgow.ac.uk",
+    "authored_date": "2022-09-27T12:24:57.000+01:00",
+    "committer_name": "twsswt",
+    "committer_email": "timothy.storer@glasgow.ac.uk",
+    "committed_date": "2022-09-27T12:24:57.000+01:00",
+    "trailers": {},
+    "web_url": "https://stgit.dcs.gla.ac.uk/asep/asep-coursework-2022/-/commit/96bc9101c3e6dc29f9b3346170da2b9640e69849"
+  },
+  {
+    "id": "fda7c9583471e8f6efe69f09670add642522d797",
+    "short_id": "fda7c958",
+    "created_at": "2022-09-27T12:24:03.000+01:00",
+    "parent_ids": [],
+    "title": "Initial commit",
+    "message": "Initial commit",
+    "author_name": "Tim Storer Admin",
+    "author_email": "tws@dcs.gla.ac.uk",
+    "authored_date": "2022-09-27T12:24:03.000+01:00",
+    "committer_name": "Tim Storer Admin",
+    "committer_email": "tws@dcs.gla.ac.uk",
+    "committed_date": "2022-09-27T12:24:03.000+01:00",
+    "trailers": {},
+    "web_url": "https://stgit.dcs.gla.ac.uk/asep/asep-coursework-2022/-/commit/fda7c9583471e8f6efe69f09670add642522d797"
+  }
+]

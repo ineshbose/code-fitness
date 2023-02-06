@@ -3,12 +3,19 @@
     "title": "3 Commits",
     "data": [
       {
-        "date": "Tuesday",
-        "count": 1
+        "date": "Tue Mar 06 2012",
+        "count": 1,
+        "day": "Tuesday"
       },
       {
-        "date": "Wednesday",
-        "count": 2
+        "date": "Wed Sep 14 2011",
+        "count": 1,
+        "day": "Wednesday"
+      },
+      {
+        "date": "Wed Jan 26 2011",
+        "count": 1,
+        "day": "Wednesday"
       }
     ]
   },
@@ -25,22 +32,198 @@
     ]
   },
   {
-    "title": "3 Contributions",
+    "title": "45 Contributors",
     "data": [
       {
-        "id": 251370,
         "username": "Spaceghost",
-        "contributions": 1
+        "totalCommits": 1,
+        "commitsCreated": 1
       },
       {
-        "id": 583231,
         "username": "octocat",
-        "contributions": 1
+        "totalCommits": 1,
+        "commitsCreated": 1
       },
       {
-        "id": 94719050,
         "username": "Cameron423698",
-        "contributions": 1
+        "totalCommits": 1,
+        "commitsCreated": 1
+      },
+      {
+        "username": "Masterkenshin",
+        "issuesCreated": 1
+      },
+      {
+        "username": "IIGodi",
+        "issuesCreated": 1
+      },
+      {
+        "username": "huntingh",
+        "issuesCreated": 1
+      },
+      {
+        "username": "Osusushue",
+        "issuesCreated": 1
+      },
+      {
+        "username": "ghost",
+        "issuesCreated": 1
+      },
+      {
+        "username": "nikkovalev",
+        "issuesCreated": 4
+      },
+      {
+        "username": "devtrafik-machine-access[bot]",
+        "issuesCreated": 1
+      },
+      {
+        "username": "takumi-ricoh",
+        "issuesCreated": 1
+      },
+      {
+        "username": "Iam-Ignite",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "Shatha-Salah",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "carrot7291",
+        "issuesCreated": 1
+      },
+      {
+        "username": "SandeepKrSuman",
+        "issuesCreated": 1
+      },
+      {
+        "username": "riosniper87",
+        "issuesCreated": 1
+      },
+      {
+        "username": "charlesfrisbee",
+        "issuesCreated": 5
+      },
+      {
+        "username": "dhruvin-22",
+        "issuesCreated": 1
+      },
+      {
+        "username": "mmte-mdown[bot]",
+        "issuesCreated": 2
+      },
+      {
+        "username": "Tenchoelama",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "NateFlesher",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "kayla2292",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "colemichaelj",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "j1217kk",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "Zenosta",
+        "issuesCreated": 1,
+        "pullsCreated": 1
+      },
+      {
+        "username": "onitram52",
+        "pullsCreated": 1
+      },
+      {
+        "username": "MohammadAltouq",
+        "pullsCreated": 1
+      },
+      {
+        "username": "jeongwang95",
+        "pullsCreated": 1
+      },
+      {
+        "username": "rrhoades10",
+        "pullsCreated": 1
+      },
+      {
+        "username": "pruitttkelly",
+        "pullsCreated": 1
+      },
+      {
+        "username": "sbsrnt",
+        "pullsCreated": 2
+      },
+      {
+        "username": "kevcifu",
+        "pullsCreated": 1
+      },
+      {
+        "username": "XiaoyuXu-E",
+        "pullsCreated": 1
+      },
+      {
+        "username": "ausdrew",
+        "pullsCreated": 1
+      },
+      {
+        "username": "topiks",
+        "pullsCreated": 2
+      },
+      {
+        "username": "masahiko-imai",
+        "pullsCreated": 1
+      },
+      {
+        "username": "vlgunsdaddy",
+        "pullsCreated": 1
+      },
+      {
+        "username": "sunildsh",
+        "pullsCreated": 1
+      },
+      {
+        "username": "himanshudamani",
+        "pullsCreated": 1
+      },
+      {
+        "username": "DyGoode",
+        "pullsCreated": 1
+      },
+      {
+        "username": "kaathyvu",
+        "pullsCreated": 1
+      },
+      {
+        "username": "aftenmarywhitmore",
+        "pullsCreated": 1
+      },
+      {
+        "username": "Zevv3",
+        "pullsCreated": 1
+      },
+      {
+        "username": "KatieHealy1",
+        "pullsCreated": 1
+      },
+      {
+        "username": "smcteague",
+        "pullsCreated": 1
       }
     ]
   }

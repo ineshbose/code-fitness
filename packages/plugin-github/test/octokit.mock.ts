@@ -17,14 +17,31 @@ export default class Octokit {
       listCommits: () => ({ data: this.commitMap.all }),
       getCommit: ({ ref }: any) => ({ data: this.commitMap[ref] }),
       listContributors: async () => ({
-        data: await import('./mocks/contributors.json'),
+        data: await import('./mocks/contributors.json').then(
+          (m) => m.default || m
+        ),
+      }),
+      compareCommits: () => ({
+        data: { stats: { ahead_by: 5, behind_by: 5 } },
+      }),
+      listBranches: async () => ({
+        data: await import('./mocks/branches.json').then((m) => m.default || m),
       }),
     },
     issues: {
-      listForRepo: async () => ({ data: await import('./mocks/issues.json') }),
+      listForRepo: async () => ({
+        data: await import('./mocks/issues.json').then((m) => m.default || m),
+      }),
+    },
+    pulls: {
+      list: async () => ({
+        data: await import('./mocks/pulls.json').then((m) => m.default || m),
+      }),
     },
   };
 
   // eslint-disable-next-line class-methods-use-this
-  request = async () => ({ data: await import('./mocks/files.json') });
+  request = async () => ({
+    data: await import('./mocks/files.json').then((m) => m.default || m),
+  });
 }

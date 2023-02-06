@@ -1,17 +1,432 @@
 [
   {
+    "type": "line",
+    "data": {
+      "labels": [
+        "Wed Jan 26 2011",
+        "Wed Sep 14 2011",
+        "Tue Mar 06 2012",
+        "Mon Oct 10 2022",
+        "Tue Oct 11 2022",
+        "Wed Oct 19 2022",
+        "Fri Oct 21 2022",
+        "Fri Oct 28 2022",
+        "Thu Nov 03 2022",
+        "Thu Nov 10 2022",
+        "Sat Nov 12 2022",
+        "Fri Nov 18 2022",
+        "Tue Nov 22 2022",
+        "Mon Dec 19 2022",
+        "Sat Dec 24 2022",
+        "Mon Dec 26 2022",
+        "Wed Jan 11 2023",
+        "Mon Jan 16 2023",
+        "Tue Jan 17 2023",
+        "Wed Jan 18 2023",
+        "Sat Jan 21 2023",
+        "Tue Jan 24 2023",
+        "Wed Jan 25 2023",
+        "Sat Jan 28 2023",
+        "Wed Feb 01 2023",
+        "Sat Feb 04 2023",
+        "Sun Feb 05 2023"
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            {
+              "x": "Tue Mar 06 2012",
+              "y": 1
+            },
+            {
+              "x": "Wed Sep 14 2011",
+              "y": 1
+            },
+            {
+              "x": "Wed Jan 26 2011",
+              "y": 1
+            }
+          ],
+          "tension": 0.1
+        },
+        {
+          "label": "Issues",
+          "data": [
+            {
+              "x": "Sun Feb 05 2023",
+              "y": 1
+            },
+            {
+              "x": "Sat Feb 04 2023",
+              "y": 1
+            },
+            {
+              "x": "Wed Feb 01 2023",
+              "y": 1
+            },
+            {
+              "x": "Sat Jan 28 2023",
+              "y": 2
+            },
+            {
+              "x": "Wed Jan 25 2023",
+              "y": 5
+            },
+            {
+              "x": "Tue Jan 24 2023",
+              "y": 1
+            },
+            {
+              "x": "Sat Jan 21 2023",
+              "y": 1
+            },
+            {
+              "x": "Wed Jan 18 2023",
+              "y": 1
+            },
+            {
+              "x": "Tue Jan 17 2023",
+              "y": 1
+            },
+            {
+              "x": "Mon Jan 16 2023",
+              "y": 1
+            },
+            {
+              "x": "Wed Jan 11 2023",
+              "y": 1
+            },
+            {
+              "x": "Mon Dec 26 2022",
+              "y": 6
+            },
+            {
+              "x": "Sat Dec 24 2022",
+              "y": 2
+            },
+            {
+              "x": "Mon Dec 19 2022",
+              "y": 6
+            }
+          ],
+          "tension": 0.1
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            {
+              "x": "Sat Jan 21 2023",
+              "y": 1
+            },
+            {
+              "x": "Wed Jan 18 2023",
+              "y": 1
+            },
+            {
+              "x": "Mon Dec 19 2022",
+              "y": 11
+            },
+            {
+              "x": "Tue Nov 22 2022",
+              "y": 2
+            },
+            {
+              "x": "Fri Nov 18 2022",
+              "y": 1
+            },
+            {
+              "x": "Sat Nov 12 2022",
+              "y": 1
+            },
+            {
+              "x": "Thu Nov 10 2022",
+              "y": 1
+            },
+            {
+              "x": "Thu Nov 03 2022",
+              "y": 2
+            },
+            {
+              "x": "Fri Oct 28 2022",
+              "y": 1
+            },
+            {
+              "x": "Fri Oct 21 2022",
+              "y": 1
+            },
+            {
+              "x": "Wed Oct 19 2022",
+              "y": 1
+            },
+            {
+              "x": "Tue Oct 11 2022",
+              "y": 1
+            },
+            {
+              "x": "Mon Oct 10 2022",
+              "y": 6
+            }
+          ],
+          "tension": 0.1
+        }
+      ]
+    }
+  },
+  {
     "type": "radar",
     "data": {
       "labels": [
+        "Sunday",
+        "Monday",
         "Tuesday",
-        "Wednesday"
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            0,
+            0,
+            1,
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Issues",
+          "data": [
+            1,
+            13,
+            2,
+            8,
+            0,
+            0,
+            6
+          ]
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            0,
+            17,
+            3,
+            2,
+            3,
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {}
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        "Spaceghost",
+        "octocat",
+        "Cameron423698",
+        "Masterkenshin",
+        "IIGodi",
+        "huntingh",
+        "Osusushue",
+        "ghost",
+        "nikkovalev",
+        "devtrafik-machine-access[bot]",
+        "takumi-ricoh",
+        "Iam-Ignite",
+        "Shatha-Salah",
+        "carrot7291",
+        "SandeepKrSuman",
+        "riosniper87",
+        "charlesfrisbee",
+        "dhruvin-22",
+        "mmte-mdown[bot]",
+        "Tenchoelama",
+        "NateFlesher",
+        "kayla2292",
+        "colemichaelj",
+        "j1217kk",
+        "Zenosta",
+        "onitram52",
+        "MohammadAltouq",
+        "jeongwang95",
+        "rrhoades10",
+        "pruitttkelly",
+        "sbsrnt",
+        "kevcifu",
+        "XiaoyuXu-E",
+        "ausdrew",
+        "topiks",
+        "masahiko-imai",
+        "vlgunsdaddy",
+        "sunildsh",
+        "himanshudamani",
+        "DyGoode",
+        "kaathyvu",
+        "aftenmarywhitmore",
+        "Zevv3",
+        "KatieHealy1",
+        "smcteague"
       ],
       "datasets": [
         {
           "label": "Commits",
           "data": [
             1,
-            2
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Issues",
+          "data": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            4,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
           ]
         }
       ]
@@ -23,7 +438,15 @@
         },
         "title": {
           "display": true,
-          "text": "3 Commits"
+          "text": "45 Contributors"
+        }
+      },
+      "scales": {
+        "x": {
+          "stacked": true
+        },
+        "y": {
+          "stacked": true
         }
       }
     }
@@ -48,6 +471,7 @@
       ]
     },
     "options": {
+      "parsing": {},
       "plugins": {
         "legend": {
           "display": false
@@ -62,13 +486,15 @@
           "title": {
             "display": true,
             "text": "Additions"
-          }
+          },
+          "type": "logarithmic"
         },
         "y": {
           "title": {
             "display": true,
             "text": "Deletions"
-          }
+          },
+          "type": "logarithmic"
         }
       }
     }
@@ -77,29 +503,113 @@
     "type": "bar",
     "data": {
       "labels": [
-        "Spaceghost",
-        "octocat",
-        "Cameron423698"
+        "master",
+        "octocat-patch-1",
+        "test"
       ],
       "datasets": [
         {
-          "label": "Contributions",
+          "label": "Ahead",
           "data": [
-            1,
-            1,
-            1
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Behind",
+          "data": [
+            null,
+            null,
+            null
           ]
         }
       ]
     },
     "options": {
-      "plugins": {
-        "legend": {
-          "display": false
+      "indexAxis": "y"
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            [
+              1331075210000,
+              1331075210000
+            ],
+            [
+              1315975361000,
+              1315975361000
+            ],
+            [
+              1296068768000,
+              1296068768000
+            ]
+          ]
         },
-        "title": {
-          "display": true,
-          "text": "3 Contributions"
+        {
+          "label": "Issues",
+          "data": [
+            [
+              1674069554000,
+              1674069636000
+            ],
+            [
+              1673899569000,
+              1673899668000
+            ],
+            [
+              1672047465000,
+              1672049299000
+            ]
+          ]
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            [
+              1674069554000,
+              1674069636000
+            ],
+            [
+              1669107922000,
+              1669107931000
+            ],
+            [
+              1669107115000,
+              1669107153000
+            ],
+            [
+              1668744054000,
+              1671904709000
+            ],
+            [
+              1668266255000,
+              1668266409000
+            ]
+          ]
+        }
+      ]
+    },
+    "options": {
+      "indexAxis": "y",
+      "scales": {
+        "x": {
+          "beginAtZero": false
+        },
+        "y": {
+          "beginAtZero": false
         }
       }
     }

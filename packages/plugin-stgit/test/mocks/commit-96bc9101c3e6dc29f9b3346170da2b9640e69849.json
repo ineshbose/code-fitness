@@ -1,0 +1,26 @@
+{
+  "id": "96bc9101c3e6dc29f9b3346170da2b9640e69849",
+  "short_id": "96bc9101",
+  "created_at": "2022-09-27T12:24:57.000+01:00",
+  "parent_ids": [
+    "fda7c9583471e8f6efe69f09670add642522d797"
+  ],
+  "title": "Updates",
+  "message": "Updates\n",
+  "author_name": "twsswt",
+  "author_email": "timothy.storer@glasgow.ac.uk",
+  "authored_date": "2022-09-27T12:24:57.000+01:00",
+  "committer_name": "twsswt",
+  "committer_email": "timothy.storer@glasgow.ac.uk",
+  "committed_date": "2022-09-27T12:24:57.000+01:00",
+  "trailers": {},
+  "web_url": "https://stgit.dcs.gla.ac.uk/asep/asep-coursework-2022/-/commit/96bc9101c3e6dc29f9b3346170da2b9640e69849",
+  "stats": {
+    "additions": 211,
+    "deletions": 90,
+    "total": 301
+  },
+  "status": null,
+  "project_id": 6098,
+  "last_pipeline": null
+}

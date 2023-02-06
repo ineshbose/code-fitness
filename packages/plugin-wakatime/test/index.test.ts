@@ -4,11 +4,24 @@ import WakaTimePlugin from '../src';
 import GitHubPlugin from '../../plugin-github/src';
 
 vi.mock('ofetch', async () => {
-  const ofetch = await import('./ofetch.mock').then((m) => m.default || m);
+  function ofetch() {
+    return 200;
+  }
+
+  const props = await import('./ofetch.mock').then((m) => m.default || m);
+  ofetch.create = props.create;
+
   return { ofetch };
 });
 
-describe('code-fitness-plugin-github', () => {
+vi.mock('octokit', async () => {
+  const Octokit = await import('../../plugin-github/test/octokit.mock').then(
+    (m) => m.default || m
+  );
+  return { Octokit };
+});
+
+describe('code-fitness-plugin-wakatime', () => {
   it('plugin', async () => {
     const tracker = new CodeFitness({
       plugins: [WakaTimePlugin],

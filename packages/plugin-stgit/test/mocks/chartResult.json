@@ -1,0 +1,321 @@
+[
+  {
+    "type": "line",
+    "data": {
+      "labels": [
+        "Tue Sep 27 2022",
+        "Wed Sep 28 2022",
+        "Thu Sep 29 2022",
+        "Thu Oct 06 2022",
+        "Fri Jan 13 2023"
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            {
+              "x": "Wed Sep 28 2022",
+              "y": 2
+            },
+            {
+              "x": "Tue Sep 27 2022",
+              "y": 2
+            }
+          ],
+          "tension": 0.1
+        },
+        {
+          "label": "Issues",
+          "data": [],
+          "tension": 0.1
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            {
+              "x": "Fri Jan 13 2023",
+              "y": 1
+            },
+            {
+              "x": "Thu Oct 06 2022",
+              "y": 1
+            },
+            {
+              "x": "Thu Sep 29 2022",
+              "y": 1
+            },
+            {
+              "x": "Wed Sep 28 2022",
+              "y": 1
+            }
+          ],
+          "tension": 0.1
+        }
+      ]
+    }
+  },
+  {
+    "type": "radar",
+    "data": {
+      "labels": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Issues",
+          "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {}
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        "timothy.storer@glasgow.ac.uk",
+        "tws@dcs.gla.ac.uk",
+        null
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "label": "Issues",
+          "data": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            0,
+            0,
+            4
+          ]
+        }
+      ]
+    },
+    "options": {
+      "plugins": {
+        "legend": {
+          "display": false
+        },
+        "title": {
+          "display": true,
+          "text": "3 Contributors"
+        }
+      },
+      "scales": {
+        "x": {
+          "stacked": true
+        },
+        "y": {
+          "stacked": true
+        }
+      }
+    }
+  },
+  {
+    "type": "bubble",
+    "data": {
+      "labels": [
+        "README.md",
+        "FormativeAssessment1.md",
+        "report.md",
+        "weekly_diary_2.md"
+      ],
+      "datasets": [
+        {
+          "label": "Changes to Files",
+          "data": [
+            {
+              "x": 103,
+              "y": 92,
+              "r": 4
+            },
+            {
+              "x": 57,
+              "y": 0,
+              "r": 1
+            },
+            {
+              "x": 115,
+              "y": 0,
+              "r": 1
+            },
+            {
+              "x": 30,
+              "y": 0,
+              "r": 1
+            }
+          ]
+        }
+      ]
+    },
+    "options": {
+      "parsing": {},
+      "plugins": {
+        "legend": {
+          "display": false
+        },
+        "title": {
+          "display": true,
+          "text": "397 Changes to Files"
+        }
+      },
+      "scales": {
+        "x": {
+          "title": {
+            "display": true,
+            "text": "Additions"
+          },
+          "type": "logarithmic"
+        },
+        "y": {
+          "title": {
+            "display": true,
+            "text": "Deletions"
+          },
+          "type": "logarithmic"
+        }
+      }
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        "main"
+      ],
+      "datasets": [
+        {
+          "label": "Ahead",
+          "data": [
+            0
+          ]
+        },
+        {
+          "label": "Behind",
+          "data": [
+            0
+          ]
+        }
+      ]
+    },
+    "options": {
+      "indexAxis": "y"
+    }
+  },
+  {
+    "type": "bar",
+    "data": {
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datasets": [
+        {
+          "label": "Commits",
+          "data": [
+            [
+              1664368915000,
+              1664368915000
+            ],
+            [
+              1664366703000,
+              1664366703000
+            ],
+            [
+              1664277897000,
+              1664277897000
+            ],
+            [
+              1664277843000,
+              1664277843000
+            ]
+          ]
+        },
+        {
+          "label": "Issues",
+          "data": []
+        },
+        {
+          "label": "Pulls",
+          "data": [
+            [
+              1673613014855,
+              1673613063989
+            ],
+            [
+              1664474274514,
+              1664474365156
+            ]
+          ]
+        }
+      ]
+    },
+    "options": {
+      "indexAxis": "y",
+      "scales": {
+        "x": {
+          "beginAtZero": false
+        },
+        "y": {
+          "beginAtZero": false
+        }
+      }
+    }
+  }
+]
