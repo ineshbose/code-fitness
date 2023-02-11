@@ -1,8 +1,7 @@
 {
-  "name": "code-fitness",
-  "description": "Fitness application for Software Projects",
-  "repository": "https://github.com/ineshbose/code-fitness.git",
+  "name": "code-fitness-monorepo",
   "private": true,
+  "repository": "https://github.com/ineshbose/code-fitness.git",
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "packages/*",
@@ -11,11 +10,12 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
-    "dev": "turbo run dev --no-cache --parallel --continue",
-    "dev:ext": "npm run dev --workspace=extension",
+    "test": "turbo run test",
     "lint": "turbo run lint && eslint .",
-    "test": "turbo run test"
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "dev:ext": "npm run dev --workspace=code-fitness"
   },
+  "resolutions": {},
   "dependencies": {},
   "devDependencies": {
     "@code-fitness/eslint-config": "*",

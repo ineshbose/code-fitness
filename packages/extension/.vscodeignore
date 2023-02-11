@@ -1,5 +1,10 @@
-src
-node_modules
-test
+../../**/*
+../**/*
 .github
+.turbo
 .vscode
+dist/app
+node_modules
+src
+test
+types

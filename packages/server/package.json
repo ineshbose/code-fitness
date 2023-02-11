@@ -10,6 +10,6 @@
     "clean": "rimraf .turbo .nitro .output node_modules"
   },
   "dependencies": {
-    "nitropack": "2.1.1"
+    "nitropack": "^2.2.0"
   }
 }

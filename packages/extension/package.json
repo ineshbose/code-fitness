@@ -1,21 +1,27 @@
 {
-  "name": "extension",
-  "version": "0.0.0",
-  "description": "",
+  "name": "code-fitness",
+  "version": "0.1.0",
+  "displayName": "Code Fitness",
+  "description": "Fitness application for Software Projects",
+  "repository": "https://github.com/ineshbose/code-fitness",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
+  "publisher": "2504266b-student-gla-ac-uk",
   "license": "UNLICENSED",
+  "categories": [],
+  "keywords": [],
+  "badges": [],
   "main": "./dist/index.js",
   "files": [
     "dist"
   ],
-  "icon": "https://raw.githubusercontent.com/ineshbose/code-fitness/main/.github/logo.png",
+  "icon": "dist/android-chrome-512x512.png",
   "engines": {
     "vscode": "^1.69.0"
   },
-  "activationEvents": [
-    "onCommand:code-fitness.start",
-    "onCommand:code-fitness.reload"
+  "extensionDependencies": [
+    "WakaTime.vscode-wakatime"
   ],
+  "activationEvents": [],
   "contributes": {
     "commands": [
       {
@@ -36,13 +42,13 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
-    "clean": "rimraf .turbo node_modules dist",
-    "build": "tsup",
     "dev": "npm run build -- --watch",
-    "pack": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies",
-    "typecheck": "tsc --noEmit"
+    "build": "tsup",
+    "ext:pack": "vsce package",
+    "ext:publish": "vsce publish",
+    "clean": "rimraf .turbo node_modules dist",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run build"
   },
   "dependencies": {
     "app": "*",
@@ -50,7 +56,8 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.69.0",
-    "@vscode/vsce": "^2.15.0",
+    "@vscode/vsce": "^2.17.0",
+    "react": "^18.2.0",
     "tsup": "^6.5.0"
   },
   "build": {
@@ -66,8 +73,13 @@
       "vscode"
     ],
     "noExternal": [
-      "app"
+      "app",
+      "ofetch"
     ],
     "publicDir": "../app/dist"
+  },
+  "vsce": {
+    "dependencies": false,
+    "yarn": true
   }
 }

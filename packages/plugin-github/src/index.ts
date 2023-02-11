@@ -36,6 +36,7 @@ export default definePlugin({
       repolink || 'octocat/Hello-World'
     )
       .replace(/^https?:\/\/github\.com\//, '')
+      .replace(/\.git$/, '')
       .split('/');
 
     const octokit = new Octokit({ auth });
@@ -45,7 +46,7 @@ export default definePlugin({
     const { commits, issues, pulls, branches } = repoData;
 
     const commitsVerbose: typeof commits = [];
-    const branchesVerbose: (typeof branches[number] & {
+    const branchesVerbose: ((typeof branches)[number] & {
       stats: Awaited<
         ReturnType<Octokit['rest']['repos']['compareCommits']>
       >['data'];
@@ -57,7 +58,7 @@ export default definePlugin({
 
     const commitFiles: Array<
       Pick<
-        NonNullable<typeof commits[0]['files']>[0],
+        NonNullable<(typeof commits)[0]['files']>[0],
         'filename' | 'changes' | 'additions' | 'deletions'
       > & {
         count: number;

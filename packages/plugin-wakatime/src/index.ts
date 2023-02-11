@@ -7,6 +7,49 @@ import type { ChartConfigurationInstance } from 'chart.js';
 import type GitHubPlugin from '~/plugin-github/src';
 import type { Octo } from './types';
 
+const categoryStackLegend = (categories: string[]) =>
+  <
+    NonNullable<
+      NonNullable<ChartConfigurationInstance['options']>['plugins']
+    >['legend']
+  >{
+    labels: {
+      generateLabels: (chart) =>
+        categories.map((text) => {
+          const dataset = chart.data.datasets.filter((i) => i.stack === text);
+          const datasetIndex =
+            dataset.length > 0
+              ? chart.data.datasets.findIndex(
+                  (i) => i.label === dataset[0].label
+                )
+              : undefined;
+
+          return {
+            text,
+            hidden: datasetIndex
+              ? chart.getDatasetMeta(datasetIndex).hidden
+              : true,
+            dataset,
+            datasetIndex,
+          };
+        }),
+    },
+
+    onClick: (evt, legendItem, legend) =>
+      legend.chart.data.datasets.forEach((dataset, jdx) => {
+        if (dataset.stack === legendItem.text) {
+          if (legend.chart.isDatasetVisible(jdx)) {
+            legend.chart.hide(jdx);
+            legendItem.hidden = true;
+          } else {
+            legend.chart.show(jdx);
+            legendItem.hidden = false;
+          }
+          // legendItem.hidden = !legendItem.hidden;
+        }
+      }),
+  };
+
 export default definePlugin({
   name: 'wakatime',
   props: {
@@ -240,6 +283,7 @@ export default definePlugin({
                             label,
                             data: values,
                             stack,
+                            hidden: !['branches', 'entities'].includes(stack),
                           }))
                         ),
                       ],
@@ -260,10 +304,32 @@ export default definePlugin({
                           display: true,
                           text: `${start} to ${end}`,
                         },
-                        legend: { display: false },
+                        legend: categoryStackLegend(Object.keys(countMap)),
                       },
                     },
                   },
+                  // Performance hog pie charts for each day, each category
+                  // ...data.flatMap((d) =>
+                  //   Object.keys(countMap).map(
+                  //     (c) =>
+                  //       <ChartConfigurationInstance>{
+                  //         type: 'pie',
+                  //         data: {
+                  //           labels: d[c as keyof typeof countMap].map(
+                  //             (i) => i.name
+                  //           ),
+                  //           datasets: [
+                  //             {
+                  //               label: c,
+                  //               data: d[c as keyof typeof countMap].map(
+                  //                 (i) => i.percent
+                  //               ),
+                  //             },
+                  //           ],
+                  //         },
+                  //       }
+                  //   )
+                  // ),
                 ];
               })
               .flat(),
@@ -320,6 +386,7 @@ export default definePlugin({
                             label,
                             data: values,
                             stack,
+                            hidden: !['categories'].includes(stack),
                           }))
                         ),
                       ],
@@ -338,7 +405,7 @@ export default definePlugin({
                           display: true,
                           text: `opened ${start}, closed ${end}`,
                         },
-                        legend: { display: false },
+                        legend: categoryStackLegend(Object.keys(countMap)),
                       },
                     },
                   },

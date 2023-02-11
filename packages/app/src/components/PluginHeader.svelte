@@ -20,7 +20,9 @@
   };
 </script>
 
-<div style="display: flex; gap: 0.5rem;">
+<div
+  style="background-color: rgb(255 255 255 / 0.6); backdrop-filter: blur(4px); position: sticky; top: 0px; display: flex; gap: 0.5rem;"
+>
   <vscode-button
     appearance="icon"
     aria-label={open ? 'Collapse' : 'Expand'}
@@ -37,5 +39,9 @@
     </svg>
   </vscode-button>
 
-  <h2 style="text-transform: uppercase; letter-spacing: 0.05em;">{name}</h2>
+  <h2
+    style="color: #000000; text-transform: uppercase; letter-spacing: 0.05em;"
+  >
+    {name}
+  </h2>
 </div>

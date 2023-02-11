@@ -28,10 +28,9 @@ export default definePlugin({
   },
   async setup(resolvedOptions) {
     const { token, repolink } = resolvedOptions;
-    const projectId: string = (repolink || 'asep/asep-coursework-2022').replace(
-      `${HOST}/`,
-      ''
-    );
+    const projectId: string = (repolink || 'asep/asep-coursework-2022')
+      .replace(`${HOST}/`, '')
+      .replace(/\.git$/, '');
 
     const foxokit = new Gitlab({ host: HOST, token });
 
@@ -43,7 +42,7 @@ export default definePlugin({
     };
     const { commits, issues, pulls, branches } = repoData;
 
-    const commitsVerbose: (typeof commits[number] & {
+    const commitsVerbose: ((typeof commits)[number] & {
       files: {
         filename: string;
         additions: number;
@@ -51,7 +50,7 @@ export default definePlugin({
         changes: number;
       }[];
     })[] = [];
-    const branchesVerbose: (typeof branches[number] & {
+    const branchesVerbose: ((typeof branches)[number] & {
       stats: { ahead_by: number; behind_by: number }; // Awaited<ReturnType<typeof foxokit['Repositories']['compare']>>;
     })[] = [];
     const countDates: Record<
@@ -125,12 +124,12 @@ export default definePlugin({
 
         const userIdx = contributorData.findIndex(
           ({ username }) =>
-            username === (author as typeof contributors[number]).email
+            username === (author as (typeof contributors)[number]).email
         );
 
         if (userIdx === -1) {
           contributorData.push({
-            username: (author as typeof contributors[number]).email,
+            username: (author as (typeof contributors)[number]).email,
             [`${i}Created`]: 1,
           });
         } else {
@@ -181,7 +180,7 @@ export default definePlugin({
 
           const parseDiffObject = (
             diffObject: Awaited<
-              ReturnType<typeof foxokit['Commits']['diff']>
+              ReturnType<(typeof foxokit)['Commits']['diff']>
             >[number]
           ) => {
             const diffLines = diffObject.diff.split('\n');
