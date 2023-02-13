@@ -100,8 +100,8 @@ export default class MainPanel {
       .replace(
         '<body ',
         `<body ${Object.entries({
-          // plugin-0 -> github, plugin-1 -> wakatime
-          'github-repolink': (
+          // plugin-0 -> stgit, plugin-1 -> wakatime
+          'stgit-repolink': (
             await Promise.all(
               this.gitExtension?.repositories.map((r) =>
                 r.getConfig('remote.origin.url')

@@ -1,7 +1,7 @@
 {
-  "name": "code-fitness",
+  "name": "code-fitness-stgit",
   "version": "0.1.0",
-  "displayName": "Code Fitness",
+  "displayName": "Code Fitness (stgit version)",
   "description": "Fitness application for Software Projects",
   "repository": "https://github.com/ineshbose/code-fitness",
   "author": "Inesh Bose <2504266B@student.gla.ac.uk>",
@@ -25,9 +25,9 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-fitness.start",
+        "command": "code-fitness-stgit.start",
         "title": "Open dashboard",
-        "category": "Code Fitness",
+        "category": "Code Fitness (stgit)",
         "icon": "$(code-fitness)"
       }
     ],

@@ -4,8 +4,8 @@ import { joinURL, withHttps } from 'ufo';
 import { definePlugin } from 'core';
 
 import type { ChartConfigurationInstance } from 'chart.js';
-import type GitHubPlugin from '~/plugin-github/src';
-import type { Octo } from './types';
+import type { Types as Gitlab } from '@gitbeaker/browser';
+import type StgitPlugin from '~/plugin-stgit/src';
 
 const categoryStackLegend = (categories: string[]) =>
   <
@@ -92,10 +92,10 @@ export default definePlugin({
       });
     }
 
-    const githubData:
+    const stgitData:
       | (ReturnType<
           Awaited<
-            ReturnType<ReturnType<typeof GitHubPlugin>['setup']>
+            ReturnType<ReturnType<typeof StgitPlugin>['setup']>
           >['raw'] extends infer R_
             ? R_ extends (...args: any) => any
               ? R_
@@ -105,30 +105,34 @@ export default definePlugin({
           Record<'issues' | 'commits', any[]>)
       | undefined
       | any =
-      core.plugins.github && core.plugins.github.raw
-        ? core.plugins.github.raw()
+      core.plugins.stgit && core.plugins.stgit.raw
+        ? core.plugins.stgit.raw()
         : undefined;
 
-    const commitData: (Summary & { commit: Octo<'repos', 'getCommit'> })[] = [];
-    const issueData: (Summary & { issue: Octo<'issues', 'get'> })[] = [];
+    const commitData: (Summary & { commit: Gitlab.CommitSchema })[] = [];
+    const issueData: (Summary & { issue: Omit<Gitlab.IssueSchema, 'epic'> })[] =
+      [];
     // const pullsData: Summary[] = [];
 
-    if (githubData) {
-      const { commits, issues } = githubData as {
-        commits: Octo<'repos', 'listCommits'>;
-        issues: Octo<'issues', 'listForRepo'>;
-        // pulls: Octo<'pulls', 'list'>;
+    if (stgitData) {
+      const { commits, issues } = stgitData as {
+        commits: Gitlab.CommitSchema[];
+        issues: Omit<Gitlab.IssueSchema, 'epic'>[];
+        // pulls: Gitlab.MergeRequestSchema[];
+        // branches: Gitlab.BranchSchema[];
       };
 
       await Promise.all(
         commits.slice(0, 5).map(async (c, idx, arr) => {
-          if (!c.commit.committer?.date) return;
-          const start = c.commit.committer.date.slice(0, 10);
+          if (!c.committed_date) return;
+          const start = c.committed_date.toString().slice(0, 10);
           const end = (
             idx > 0
-              ? arr[idx - 1].commit.committer?.date || ''
+              ? arr[idx - 1].committed_date || ''
               : new Date().toISOString()
-          ).slice(0, 10);
+          )
+            .toString()
+            .slice(0, 10);
 
           commitData.push({
             commit: c,
@@ -145,8 +149,13 @@ export default definePlugin({
             .map(async (i) => ({
               issue: i,
               ...(await getSummary({
-                start: new Date(i.created_at).toISOString().slice(0, 10),
-                end: (i.closed_at ? new Date(i.closed_at) : new Date())
+                start: new Date(i.created_at as string)
+                  .toISOString()
+                  .slice(0, 10),
+                end: (i.closed_at
+                  ? new Date(i.closed_at as string)
+                  : new Date()
+                )
                   .toISOString()
                   .slice(0, 10),
               }).catch(() => ({} as Summary))),
@@ -229,15 +238,16 @@ export default definePlugin({
             ...commitData
               .filter((c) => c.commit && c.data)
               .map(({ commit, data }, idx, arr) => {
-                const start = (commit.commit.committer?.date || '').slice(
-                  0,
-                  10
-                );
+                const start = (commit.committed_date || '')
+                  .toString()
+                  .slice(0, 10);
                 const end = (
                   idx > 0
-                    ? arr[idx - 1].commit.commit.committer?.date || ''
+                    ? arr[idx - 1].commit.committed_date || ''
                     : new Date().toISOString()
-                ).slice(0, 10);
+                )
+                  .toString()
+                  .slice(0, 10);
 
                 const countMap: Record<
                   Extract<
@@ -296,9 +306,7 @@ export default definePlugin({
                       plugins: {
                         title: {
                           display: true,
-                          text: `Commit ${commit.sha.slice(0, 7)} (+${
-                            commit.stats?.additions || 0
-                          } -${commit.stats?.deletions || 0})`,
+                          text: `Commit ${commit.id.slice(0, 7)}`,
                         },
                         subtitle: {
                           display: true,
@@ -336,11 +344,10 @@ export default definePlugin({
             ...issueData
               .filter((i) => i.issue && i.data)
               .map(({ issue, data }) => {
-                const start = issue.created_at.slice(0, 10);
-                const end = (issue.closed_at || new Date().toISOString()).slice(
-                  0,
-                  10
-                );
+                const start = (issue.created_at as string).slice(0, 10);
+                const end = (
+                  (issue.closed_at as string) || new Date().toISOString()
+                ).slice(0, 10);
 
                 const countMap: Record<
                   Extract<
@@ -399,7 +406,7 @@ export default definePlugin({
                       plugins: {
                         title: {
                           display: true,
-                          text: `Issue #${issue.number}`,
+                          text: `Issue #${issue.id}`,
                         },
                         subtitle: {
                           display: true,

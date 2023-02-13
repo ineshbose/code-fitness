@@ -12,7 +12,7 @@ export function activate(context: ExtensionContext) {
   });
 
   const showHelloWorldCommand = commands.registerCommand(
-    'code-fitness.start',
+    'code-fitness-stgit.start',
     () => {
       MainPanel.render(context.extensionUri);
     }

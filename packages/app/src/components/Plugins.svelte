@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   import CodeFitness from 'core';
-  import GitHubPlugin from 'code-fitness-plugin-github';
+  import StgitPlugin from 'code-fitness-plugin-stgit';
   import WakaTimePlugin from 'code-fitness-plugin-wakatime';
 
   import { dev } from '$app/environment';
@@ -43,10 +43,12 @@
       }/wakaproxy`
     );
 
+    document.body.setAttribute('data-stgit-token', env.PUBLIC_STGIT_TOKEN);
+
     if ($plugins.length === 0) {
       const tracker = new CodeFitness({
         charts: true,
-        plugins: [GitHubPlugin, WakaTimePlugin],
+        plugins: [StgitPlugin, WakaTimePlugin],
       });
 
       await tracker.init();
