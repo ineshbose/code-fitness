@@ -27,12 +27,14 @@ export default class DepUtils {
           process.cwd();
 
     this.wakatimeConfig = join(this.homeDir, '.wakatime.cfg');
-    this.wakatimeKey = `waka_${
+    const rawWakaKey =
       fs
         .readFileSync(this.wakatimeConfig, 'utf-8')
         .match(/api_key\s*=\s*(\S+)/)
-        ?.pop() || ''
-    }`;
+        ?.pop() || '';
+    this.wakatimeKey = rawWakaKey.startsWith('waka_')
+      ? rawWakaKey
+      : `waka_${rawWakaKey}`;
 
     this.wakatimeProjectName = this.getProjectName(uri);
   }

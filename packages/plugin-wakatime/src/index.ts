@@ -256,7 +256,7 @@ export default definePlugin({
                   (
                     ['branches', 'categories', 'entities', 'languages'] as const
                   ).forEach((i) =>
-                    d[i].forEach((j) => {
+                    (d[i] || []).forEach((j) => {
                       const { name } = j;
                       if (!countMap[i][name]) {
                         countMap[i][name] = new Array(data.length).fill(0);
@@ -359,7 +359,7 @@ export default definePlugin({
                   (
                     ['branches', 'categories', 'entities', 'languages'] as const
                   ).forEach((i) =>
-                    d[i].forEach((j) => {
+                    (d[i] || []).forEach((j) => {
                       const { name } = j;
                       if (!countMap[i][name]) {
                         countMap[i][name] = new Array(data.length).fill(0);
