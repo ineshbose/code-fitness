@@ -7,7 +7,7 @@
 
 
 % packages to use
-% \usepackage[defernumbers=true]{biblatex}
+\usepackage[defernumbers=true]{biblatex}
 \usepackage{array} % Drop-in replacement for 'tabular' environment, with more options
 \usepackage{color}
 \usepackage{graphicx}
