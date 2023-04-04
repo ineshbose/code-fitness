@@ -1,0 +1,30 @@
+name: Build LaTeX documents
+
+on:
+  push:
+    paths:
+      - "docs/*"
+      - "docs/**/*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # - run: sed -i 's/,\? *outputDir={\.\.\/\.\.}//g' docs/prrcs/poster.tex
+      - uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            mpaper.tex
+            proposal/mprop.tex
+            prrcs/outline.tex
+            prrcs/grant.tex
+          # prrcs/poster.tex
+          working_directory: docs
+          work_in_root_file_dir: true
+          latexmk_shell_escape: true
+          extra_system_packages: "inkscape"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path: docs/**/*.pdf

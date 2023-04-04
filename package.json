@@ -1,5 +1,5 @@
 {
-  "name": "code-fitness-monorepo",
+  "name": "@code-fitness/repo",
   "private": true,
   "repository": "https://github.com/ineshbose/code-fitness.git",
   "packageManager": "yarn@1.22.19",

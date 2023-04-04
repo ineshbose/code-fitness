@@ -84,7 +84,7 @@
   </tr>
   <tr>
     <td>Supervisor's Signature</td>
-    <td></td>
+    <td>Tim Storer</td>
   </tr>
   <tr>
     <td>Date</td>
