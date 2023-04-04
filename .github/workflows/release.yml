@@ -1,9 +1,12 @@
-name: Release
+name: Release extension
 
 on:
   push:
     tags:
       - 'v*'
+    # paths:
+    #   - "packages/*"
+    #   - "packages/**/*"
 
 jobs:
   release:
@@ -14,9 +17,24 @@ jobs:
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
 
-      - run: npx changelogithub
+      - name: Run build
+        run: npm i -g @antfu/ni && nci && nr build
+
+      - name: Package
+        run: yarn workspace code-fitness ext:pack # --silent
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: extension
+          path: "packages/**/*.vsix"
+
+      - name: Publish
+        run: yarn workspace code-fitness ext:publish
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+
+      - run: npx changelogen gh release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
