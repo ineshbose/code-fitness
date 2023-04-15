@@ -7,28 +7,178 @@
 
 
 % packages to use
-\usepackage[defernumbers=true]{biblatex}
+% \usepackage[defernumbers=true]{biblatex}
 \usepackage{array} % Drop-in replacement for 'tabular' environment, with more options
-\usepackage{color}
+% \usepackage{color}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
 \usepackage{graphicx}
 \usepackage{epsfig}
-\usepackage{fixltx2e} % Misc. bugfixes
+% \usepackage{fixltx2e} % Misc. bugfixes
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{multirow}
-\usepackage{subcaption}
+% \usepackage{caption}
+% \usepackage{subcaption}
 \usepackage{listings} % Environment for code listings
+\usepackage{lstautogobble}
 \usepackage[a4paper]{geometry}
 \usepackage[breaklinks,colorlinks,citecolor=black,urlcolor=black,linkcolor=black,pdfpagelabels=false,pdfusetitle]{hyperref}
 \usepackage{flushend} % Automatically balances columns on the last page
 
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgf-pie}
+
 % Settings for code listing environment
 \definecolor{lightgray}{rgb}{.9,.9,.9}
+
+% from: https://gist.github.com/FelipeCortez/10729134
+\definecolor{bluekeywords}{rgb}{0.13, 0.19, 0.7}
+\definecolor{greencomments}{rgb}{0.1, 0.5, 0.2}
+\definecolor{redstrings}{rgb}{0.8, 0.15, 0.1}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+\definecolor{subtlegray}{rgb}{0.98, 0.98, 0.98}
 \lstset{
-basicstyle=\ttfamily \footnotesize,
-backgroundcolor=\color{lightgray},
-breaklines=true,
+    basicstyle=\ttfamily\linespread{1.15}\footnotesize,
+    backgroundcolor=\color{lightgray},
+    breaklines=true,
+	autogobble,
+	columns=fullflexible,
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+	commentstyle=\color{greencomments},
+	keywordstyle=\color{bluekeywords},
+	stringstyle=\color{redstrings},
+	numberstyle=\color{graynumbers},
+	frame=tb,
+	framesep=12pt,
+	framexleftmargin=12pt,
+	tabsize=4,
+	captionpos=b
+}
+
+%% Source: https://github.com/xgirma/latex-javaScript/blob/master/jslistings.sty
+\lstdefinelanguage{JavaScript}{
+	alsoletter={.},
+	keywords={arguments,async,await,break,case,catch,class,const,continue,debugger,default,delete,do,else,enum,eval,export,extends,false,finally,for,function,if,implements,import,in,instanceof,interface,let,new,null,package,private,protected,public,return,static,super,switch,this,throw,true,try,typeof,var,void,while,with,yield}, % JavaScript ES6 keywords
+	ndkeywords={add, apply, args, Array, Array.from, Array.isArray, Array.of , Array.prototype, ArrayBuffer, bind, Boolean, call, charAt, charCodeAt, clear, codePointAt, concat, constructor, copyWithin, DataView, Date, Date.now, Date.parse, Date.prototype, Date.UTC, decodeURI, decodeURIComponent, encodeURI, encodeURIComponent, endsWith, entries, Error, Error.prototype, EvalError, every, false, fill, filter, find, findIndex, Float32Array, Float64Array, forEach, FulfillPromise, Function, Function.length, get, getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getTime, getTimezoneOffset, getUTCDate, getUTCDay, getUTCFullYear, getUTCHours, getUTCMilliseconds, getUTCMinutes, getUTCMonth, getUTCSeconds, has,hasInstance, hasOwnProperty, ignoreCase, includes, indexOf, indexOf, Infinity, Int8Array, Int16Array, Int32Array, isConcatSpreadable, isFinite, isNaN, IsPromise, isPrototypeOf, Iterable, iterator, join, JSON, JSON.parse, JSON.stringify, keys, lastIndexOf, lastIndexOf, length, localeCompare, map, Map, match, match, Math, Math.abs , Math.acos, Math.acosh, Math.asin, Math.asinh, Math.atan, Math.atan2, Math.atanh, Math.cbrt, Math.ceil, Math.clz32, Math.cos, Math.cosh,  Math.E, Math.exp, Math.expm1, Math.floor, Math.fround, Math.hypot, Math.imul, Math.LN2, Math.LN10, Math.log, Math.log1p, Math.log2, Math.LOG2E, Math.log10, Math.LOG10E, Math.max, Math.min, Math.PI, Math.pow, Math.random, Math.round, Math.sign, Math.sin, Math.sinh, Math.sqrt, Math.SQRT1_2, Math.SQRT2, Math.tan, Math.tanh, Math.trunc, message, multiline, _name, NaN, NewPromiseCapability, next, normalize, null, Number, Number.EPSILON, Number.isFinite, Number.isInteger, Number.isNaN, Number.isSafeInteger, Number.MAX_SAFE_INTEGER, Number.MAX_VALUE, Number.MIN_SAFE_INTEGER, Number.MIN_VALUE, Number.NaN, Number.NEGATIVE_INFINITY, Number.parseFloat, Number.parseInt, Number.POSITIVE_INFINITY, Number.prototype, Object, Object, Object.assign, Object.create, Object.defineProperties, Object.defineProperty, Object.freeze, Object.getOwnPropertyDescriptor, Object.getOwnPropertyNames, Object.getOwnPropertySymbols, Object.getPrototypeOf, Object.is, Object.isExtensible, Object.isFrozen, Object.isSealed, Object.keys, Object.preventExtensions, Object.prototype, Object.seal, Object.setPrototypeOf, of, parseFloat, parseInt, pop, Promise, Promise.all , Promise.race, Promise.reject, Promise.resolve, PromiseReactionJob, propertyIsEnumerable, prototype, Proxy, Proxy.revocable , push, RangeError, reduce, reduceRight, ReferenceError, Reflect, Reflect.apply, Reflect.construct , Reflect.defineProperty, Reflect.deleteProperty, Reflect.enumerate, Reflect.get, Reflect.getOwnPropertyDescriptor, Reflect.getPrototypeOf, Reflect.has, Reflect.isExtensible, Reflect.ownKeys, Reflect.preventExtensions, Reflect.set, Reflect.setPrototypeOf, Reflection, RegExp, RegExp, RegExp.prototype, repeat, replace, replace, reverse, search, search, Set, set, setDate, setFullYear, setHours, setMilliseconds, setMinutes, setMonth, setSeconds, setTime, setUTCDate, setUTCFullYear, setUTCHours, setUTCMilliseconds, setUTCMinutes, setUTCMonth, setUTCSeconds, shift, slice, slice, some, sort, species, splice, split, split, startsWith, String, String.fromCharCode, String.fromCodePoint, String.raw, substring, Symbol, Symbol.for, Symbol.hasInstance, Symbol.isConcatSpreadable, Symbol.iterator, Symbol.keyFor, Symbol.match, Symbol.prototype, Symbol.replace, Symbol.replace, Symbol.search, Symbol.species, Symbol.split, Symbol.toPrimitive, Symbol.toStringTag, Symbol.unscopables, SyntaxError, then, toDateString, toExponential, toFixed, toISOString, toJSON, toLocaleDateString, toLocaleLowerCase, toLocaleString, toLocaleString, toLocaleString, toLocaleString, toLocaleTimeString, toLocaleUpperCase, toLowerCase, toPrecision, toPrimitive, toString, toStringTag, toTimeString, toUpperCase, toUTCString, TriggerPromiseReactions, trim, true, TypeError, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, undefined, unscopables, unshift, URIError, valueOf, WeakMap, WeakSet
+	}, % JavaScript extended keywords
+	% ndkeywordstyle=\color{jsextkeywords}\bfseries,
+	% identifierstyle=\color{identifiers},
+	sensitive=true,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[d]',
+	morestring=[s][\color{redstrings}\ttfamily]{`}{`},
+	emph={app.all, app.delete, app.disable, app.disabled, app.enable, app.enabled, app.engine, app.get, app.listen, app.locals, app.METHOD, app.mountpath, app.param, app.path, app.post, app.put, app.render, app.route, app.set, app.use, express, express.Router, express.static, req.acceptLanguages, req.accepts, req.acceptsCharsets, req.acceptsEncodings, req.app, req.baseUrl, req.body, req.cookies, req.fresh, req.get, req.hostname, req.ip, req.ips, req.is, req.method, req.originalUrl, req.param, req.params, req.path, req.protocol, req.query, req.range, req.route, req.secure, req.signedCookies, req.stale, req.subdomains, req.xhr, res.app, res.append, res.attachment, res.clearCookie, res.cookies, res.download, res.end, res.format, res.get, res.headersSent, res.json, res.jsonp, res.links, res.locals, res.location, res.redirect, res.render, res.sendFile, res.sendStatus, res.set, res.status, res.type, res.vary, router.all, router.METHOD, router.param, router.route, router.use}, % express keywords
+	emph={[2]agent.createConnection, agent.destroy, agent.freeSockets, agent.getName, agent.maxFreeSockets, agent.maxSockets, agent.requests, agent.sockets, certificate.exportChallenge, certificate.exportPublicKey, certificate.verifySpkac, child.channel, child.connected, child.disconnect, child.kill, child.pid, child.send, child.stderr, child.stdin, child.stdio, child.stdout, child_process.exec, child_process.execFile, child_process.execFileSync, child_process.execSync, child_process.fork, child_process.spawn, child_process.spawnSync, cipher.final, cipher.getAuthTag, cipher.setAAD, cipher.setAutoPadding, cipher.update, clearImmediate, clearImmediate, clearInterval, clearInterval, clearTimeout, clearTimeout, console, console.assert, console.dir, console.error, console.info, console.log, console.time, console.timeEnd, console.trace, console.warn, decipher.final, decipher.setAAD, decipher.setAuthTag, decipher.setAutoPadding, decipher.update, dgram.createSocket, dgram.createSocket, diffieHellman.computeSecret, diffieHellman.generateKeys, diffieHellman.getGenerator, diffieHellman.getPrime, diffieHellman.getPrivateKey, diffieHellman.getPublicKey, diffieHellman.setPrivateKey, diffieHellman.setPublicKey, diffieHellman.verifyError, dns.getServers, dns.getServers, dns.lookup, dns.lookup, dns.lookupService, dns.resolve, dns.resolve4, dns.resolve6, dns.resolveCname, dns.resolveMx, dns.resolveNaptr, dns.resolveNs, dns.resolvePtr, dns.resolveSoa, dns.resolveSrv, dns.resolveTxt, dns.reverse, dns.setServers, ecdh.computeSecret, ecdh.generateKeys, ecdh.getPrivateKey, ecdh.getPublicKey, ecdh.setPrivateKey, ecdh.setPublicKey, error.address, error.code, error.errno, error.message, error.path, error.port, error.stack, error.syscall, exports, fs.access, fs.accessSync, fs.appendFile, fs.appendFileSync, fs.chmod, fs.chmodSync, fs.chown, fs.chownSync, fs.close, fs.closeSync, fs.constants, fs.createReadStream, fs.createWriteStream, fs.exists, global, http.createServer, http.get, http.globalAgent, http.request, https.createServer, https.get, https.globalAgent, https.request, message.destroy, message.headers, message.httpVersion, message.method, message.rawHeaders, message.rawTrailers, message.setTimeout, message.socket, message.statusCode, message.statusMessage, message.trailers, message.url, module, module.children, module.exports, module.filename, module.id, module.loaded, module.parent, module.require, os.arch, os.constants, os.cpus, os.endianness, os.EOL, os.freemem, os.homedir, os.hostname, os.loadavg, os.networkInterfaces, os.platform, os.release, os.tmpdir, os.totalmem, os.type, os.uptime, os.userInfo, path.basename, path.delimiter, path.dirname, path.extname, path.format, path.isAbsolute, path.join, path.normalize, path.parse, path.posix, path.relative, path.resolve, path.sep, path.win32, process, process.abort, process.arch, process.argv, process.argv0, process.channel, process.chdir, process.config, process.connected, process.cpuUsage, process.cwd, process.disconnect, process.emitWarning, process.env, process.execArgv, process.execPath, process.exit, process.exitCode, process.getegid, process.geteuid, process.getgid, process.getgroups, process.getuid, process.hrtime, process.initgroups, process.kill, process.mainModule, process.memoryUsage, process.nextTick, process.pid, process.platform, process.release, process.send, process.setegid, process.seteuid, process.setgid, process.setgroups, process.setuid, process.stderr, process.stdin, process.stdout, process.title, process.umask, process.uptime, process.version, process.versions, querystring.escape, querystring.parse, querystring.stringify, querystring.unescape, r.clearLine, readable.pause, readable.pipe, readable.push, readable.push, readable.read, readable.read, readable.resume, readable.setEncoding, readable.unpipe, readable.unshift, readable.wrap, readable._read, readStream.bytesRead, readStream.isRaw, readStream.path, readStream.setRawMode, repl.start, request.abort, request.aborted, request.end, request.flushHeaders, request.setNoDelay, request.setSocketKeepAlive, request.setTimeout, request.write, require, require.cache, require.extensions, response.addTrailers, response.end, response.finished, response.getHeader, response.getHeaderNames, response.getHeaders, response.hasHeader, response.headersSent, response.removeHeader, response.sendDate, response.setHeader, response.setTimeout, response.statusCode, response.statusMessage, response.write, response.writeContinue, response.writeHead, rl.clearScreenDown, rl.close, rl.createInterface, rl.cursorTo, rl.emitKeypressEvents, rl.moveCursor, rl.pause, rl.prompt, rl.question, rl.resume, rl.setPrompt, rl.write, script.runInNewContext, script.runInThisContext, server.addContext, server.address, server.address, server.close, server.close, server.connections, server.getTicketKeys, server.listen, server.listen, server.setTicketKeys, server.setTimeout, server.setTimeout, server.timeout, server.timeout, setImmediate, setInterval, setTimeout, socket.addMembership, socket.address, socket.bind, socket.bind, socket.close, socket.dropMembership, socket.ref, socket.send, socket.setBroadcast, socket.setMulticastLoopback, socket.setMulticastTTL, socket.setTTL, socket.unref, stream.Readable, stringDecoder.end, stringDecoder.write, timeout.ref, timeout.unref, tls.connect, tls.createSecureContext, tls.createServer, tls.getCiphers, tlsSocket.address, tlsSocket.authorizationError, tlsSocket.authorized, tlsSocket.encrypted, tlsSocket.getCipher, tlsSocket.getEphemeralKeyInfo, tlsSocket.getPeerCertificate, tlsSocket.getProtocol, tlsSocket.getSession, tlsSocket.getTLSTicket, tlsSocket.localAddress, tlsSocket.localPort, tlsSocket.remoteAddress, tlsSocket.remoteFamily, tlsSocket.remotePort, tlsSocket.renegotiate, tlsSocket.setMaxSendFragment, transform._flush, transform._transform, util.debuglog, util.deprecate, util.format, util.inherits, util.inspect, v8.getHeapStatistics, v8.setFlagsFromString, vm.createContext, vm.isContext, vm.runInContext, vm.runInDebugContext, vm.runInNewContext, vm.runInThisContext, watcher.close, worker.disconnect, worker.exitedAfterDisconnect, worker.id, worker.isConnected, worker.isDead, worker.kill, worker.process, worker.send, worker.suicide, writable.cork, writable.end, writable.setDefaultEncoding, writable.write, writeStream.bytesWritten, writeStream.columns, writeStream.path, writeStream.rows, zlib, zlib.createGunzip, zlib.createGzip, zlib.createInflate, zlib.createInflateRaw, zlib.createUnzip, zlib.deflate, zlib.deflateRaw, zlib.deflateRawSync, zlib.deflateSync, zlib.gunzip, zlib.gunzipSync, zlib.gzip, zlib.gzipSync, zlib.inflate, zlib.inflateRaw, zlib.inflateRawSync, zlib.inflateSync, zlib.unzip, zlib.unzipSync, __dirname, __filename}, % Node.js keywords
+	emph={[3] assert, assert.deepEqual, assert.deepStrictEqual, assert.doesNotThrow, assert.equal, assert.fail, assert.ifError, assert.notDeepEqual, assert.notDeepStrictEqual, assert.notEqual, assert.notStrictEqual, assert.ok, assert.strictEqual, assert.throws, describe, toBe, it, xdescribe, beforeEach, afterEach, beforeAll, afterAll, expect, it, xit, xdiscribe, pending, and.callThrough, and.returnValue, and.returnValues, and.callFake, and.throwError, and.stub, .not, .calls.any, .calls.count, .calls.argsFor, .calls.allArgs, .calls.all, .calls.mostRecent, .calls.first, .calls.reset, jasmine.createSpy, jasmine.createSpyObj, jasmine.any, jasmine.anything, jasmine.objectContaining, jasmine.arrayContaining, jasmine.stringMatching, asymmetricMatch,  jasmine.clock, .not.toBeTruthy, .toBeTruthy, .not.toBeFalsy, .toBeFalsy, .not.toBeDefined .toBeDefined, .not.toBeNull .toBeNull, .not.toEqual .toEqual, .not.toBeCloseTo .toBeCloseTo, .not.toContain, .toContain, .not.toMatch, .toMatch, .not.toBeGreaterThan, .toBeGreaterThan, .not.toBeLessThan, .toBeLessThan, .toThrow, .not.toThrow, .toBeNull, .not.toBeNull, .toBeDefined, .not.toBeDefined}, % Node.js Assert, Jasmine, ... keywords
+}
+
+\lstdefinelanguage{TypeScript}{language=JavaScript, morekeywords={as,implements,interface,let,package,private,protected,public,static,yield,any,boolean,constructor,declare,get,module,require,number,set,string,symbol,type,from,of}}
+
+% Plotting graphs and charts
+\usetikzlibrary{arrows, automata, backgrounds, calendar, chains, matrix, mindmap, patterns, petri, shadows, shapes.geometric, shapes.misc, spy, trees}
+
+\tikzset{
+	chart/.style={
+		legend label/.style={font={\scriptsize},anchor=west,align=left},
+		legend box/.style={rectangle, draw, minimum size=5pt},
+		axis/.style={black,semithick,->},
+		axis label/.style={anchor=east,font={\tiny}},
+	},
+	bar chart/.style={
+		chart,
+		bar width/.code={
+			\pgfmathparse{##1/2}
+			\global\let\bar@w\pgfmathresult
+		},
+		bar/.style={very thick, draw=white},
+		bar label/.style={font={\bfseries\small},anchor=north},
+		bar value/.style={font={\footnotesize}},
+		bar width=.75,
+	},
+	pie chart/.style={
+		chart,
+		slice/.style={line cap=round, line join=round, very thick,draw=white},
+		pie title/.style={font={\bfseries}},
+		slice type/.style n args={3}{
+			##1/.style={pattern color=##2,pattern=##3},
+			values of ##1/.style={}
+		}
+}}
+
+\pgfplotsset{
+    box plot/.style={
+        /pgfplots/.cd,
+        black,
+        only marks,
+        mark=-,
+        mark size=1em,
+        /pgfplots/error bars/.cd,
+        y dir=plus,
+        y explicit,
+    },
+    box plot box/.style={
+        /pgfplots/error bars/draw error bar/.code 2 args={%
+            \draw  ##1 -- ++(1em,0pt) |- ##2 -- ++(-1em,0pt) |- ##1 -- cycle;
+        },
+        /pgfplots/table/.cd,
+        y index=2,
+        y error expr={\thisrowno{3}-\thisrowno{2}},
+        /pgfplots/box plot
+    },
+    box plot top whisker/.style={
+        /pgfplots/error bars/draw error bar/.code 2 args={%
+            \pgfkeysgetvalue{/pgfplots/error bars/error mark}%
+            {\pgfplotserrorbarsmark}%
+            \pgfkeysgetvalue{/pgfplots/error bars/error mark options}%
+            {\pgfplotserrorbarsmarkopts}%
+            \path ##1 -- ##2;
+        },
+        /pgfplots/table/.cd,
+        y index=4,
+        y error expr={\thisrowno{2}-\thisrowno{4}},
+        /pgfplots/box plot
+    },
+    box plot bottom whisker/.style={
+        /pgfplots/error bars/draw error bar/.code 2 args={%
+            \pgfkeysgetvalue{/pgfplots/error bars/error mark}%
+            {\pgfplotserrorbarsmark}%
+            \pgfkeysgetvalue{/pgfplots/error bars/error mark options}%
+            {\pgfplotserrorbarsmarkopts}%
+            \path ##1 -- ##2;
+        },
+        /pgfplots/table/.cd,
+        y index=5,
+        y error expr={\thisrowno{3}-\thisrowno{5}},
+        /pgfplots/box plot
+    },
+    box plot median/.style={
+        /pgfplots/box plot
+    }
+}
+
+\usepgfplotslibrary{statistics}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\newcommand{\legend}[2][]{
+	\begin{scope}[#1]
+		\path
+		\foreach \n/\s in {#2}
+		{
+			++(0,-6pt) node[\s,legend box] {} +(4pt,0) node[legend label] {\n}
+		}
+		;
+	\end{scope}
 }
 
 %% @jsinger
@@ -119,7 +269,7 @@ breaklines=true,
                          % notes.
 
 \parskip 0pt plus 1pt            % Extra vertical space between paragraphs.
-\parindent 9pt  % GM July 2000 / was 0pt - width of paragraph indentation.
+\parindent 10pt  % GM July 2000 / was 0pt - width of paragraph indentation.
 \partopsep 2pt plus 1pt minus 1pt% Extra vertical space, in addition to
                                  % \parskip and \topsep, added when user
                                  % leaves blank line before environment.
@@ -451,6 +601,18 @@ breaklines=true,
 \@namedef{figure*}{\@dblfloat{figure}}
 \@namedef{endfigure*}{\end@dblfloat}
 
+% \@ifundefined{subfigure}{\newcounter {subfigure}} % this is for LaTeX2e
+
+% \def\fps@subfigure{tbp}
+% \def\ftype@subfigure{1}
+% \def\ext@subfigure{lof}
+% \def\fnum@subfigure{Figure \thefigure}
+% \def\subfigure{\@float{subfigure}}
+% %\let\endfigure\end@float
+% \def\endsubfigure{\end@float} 		% Gerry January 2008
+% \@namedef{subfigure*}{\@dblfloat{subfigure}}
+% \@namedef{subfigure*}{\end@dblfloat}
+
 \@ifundefined{table}{\newcounter {table}} % this is for LaTeX2e
 
 \def\fps@table{tbp}
@@ -485,9 +647,11 @@ breaklines=true,
    \begin{center}%
    \line(1,0){500} \vskip .2cm
      {\ttlfnt \@title \par} \vskip .3cm
-     {\subttlfnt {\@author}  (\subttlfnt \@matricnum)} \vskip .1cm
-     \vskip .2cm
-     {\subttlfnt {\@date}} \vskip .1cm
+     {\subttlfnt {\@author}  (\subttlfnt \@matricnum)} % \vskip .1cm
+     % \if\@date
+     %     \vskip .2cm
+     %     {\subttlfnt {\@date}} \vskip .1cm
+     % \fi
    \line(1,0){500}
    \end{center}]%
 %   \thispagestyle{empty}\@thanks
@@ -846,7 +1010,6 @@ breaklines=true,
     {4\p@}{\baselineskip 14pt\secfnt\@ucheadtrue}%
 }
 
-
 \def\subsection{%
     \@startsection{subsection}{2}{\z@}{8\p@ \@plus -2\p@ \@minus -\p@}
     {4\p@}{\secfnt}%
@@ -888,7 +1051,7 @@ breaklines=true,
         \addpenalty\@secpenalty
         \addvspace\@tempskipa
     \fi
-\parskip=0pt % GM July 2000 (non numbered) section heads
+% \parskip=0pt % GM July 2000 (non numbered) section heads
     \@ifstar
         {\@ssect{#3}{#4}{#5}{#6}}
         {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}%
@@ -1139,9 +1302,9 @@ breaklines=true,
 \setcounter{enumi}{1}
 \bibindent=0em
 \def\thebibliography#1{% 
-     \section[References]{%    <=== OPTIONAL ARGUMENT ADDED HERE
-        {References} % was uppercased but this affects pdf bookmarks (SP/GM October 2004)
-          {\vskip -9pt plus 1pt} % GM Nov. 2006 / GM July 2000 (for somewhat tighter spacing) 
+     \section*{%    <=== OPTIONAL ARGUMENT ADDED HERE
+        {REFERENCES} % was uppercased but this affects pdf bookmarks (SP/GM October 2004)
+          % {\vskip -9pt plus 1pt} % GM Nov. 2006 / GM July 2000 (for somewhat tighter spacing) 
          \@mkboth{{\refname}}{{\refname}}%
      }%
      \list{[\arabic{enumi}]}{%
