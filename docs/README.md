@@ -14,7 +14,7 @@
 
 ## _Abstract_
 
-> _[tbd]_
+> This project researches Developer Experience, task-effort estimations and the relationship between them; this is because failures & frustrations in software project comes from the lack of awareness of code with bad DX (as it is given low regard) and inaccurate resource allocation as there are no tools for developers to reflect on their work-time & practices. We provide a solution through the means of a centralised modular dashboard showing visualisations of their development activity as realistic breakdowns from the discrete events and objective metrics on their code repository. This was evaluated in realistic scenarios with 20 developers of various roles in different structures, as they work on their projects, to determine the usability and effect on their process, showing increased awareness of their practices, and realisation of establishing good DX in their codebase.
 
 ## About This Document
 
@@ -67,7 +67,7 @@ This document follows the required template with class module files [`mpaper.cls
 </tbody>
 </table>
 
-## 🗺️ Project Layout
+## Project Layout
 
 - [`evaluation`](/docs/evaluation) contains information about the evaluations carried out for the project
 - [`readings`](/docs/readings) organises the conducted literature survey during the writing
